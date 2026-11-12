@@ -1,0 +1,17 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.hb-lp {
+  h1, h2, h3, h4 {
+    margin: 0 0 0.5em;
+    font-family: $font-heading;
+    font-weight: $fw-bold;
+    line-height: 1.15;
+  }
+
+  h1 { font-size: 2.25rem; @include mq(lg) { font-size: 3.5rem; } }
+  h2 { font-size: 1.75rem; @include mq(lg) { font-size: 2.5rem; } }
+  h3 { font-size: 1.25rem; @include mq(lg) { font-size: 1.5rem; } }
+
+  p { margin: 0 0 1em; }
+}

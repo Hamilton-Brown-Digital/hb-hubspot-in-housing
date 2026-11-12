@@ -1,0 +1,10 @@
+@use '../abstracts/variables' as *;
+
+.hb-container {
+  width: 100%;
+  max-width: calc(#{$container-max} + #{$gutter * 2});
+  margin: 0 auto;
+  padding: 0 $gutter;
+
+  &--narrow { max-width: calc(#{$container-narrow} + #{$gutter * 2}); }
+}

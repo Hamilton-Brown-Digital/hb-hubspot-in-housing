@@ -1,0 +1,18 @@
+@use '../abstracts/variables' as *;
+
+.hb-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: $c-bg;
+  transition: box-shadow $transition;
+
+  &.is-scrolled { box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08); }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 72px;
+  }
+}

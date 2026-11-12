@@ -1,0 +1,14 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.hb-hero {
+  padding: $section-pad-sm 0;
+  background: $c-bg-alt;
+  @include mq(lg) { padding: $section-pad 0; }
+
+  &__intro {
+    max-width: 40rem;
+    margin-bottom: 2rem;
+    font-size: 1.125rem;
+  }
+}

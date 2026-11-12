@@ -1,0 +1,18 @@
+{
+  "name": "hb-hubspot-in-housing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HB Creative – In-Housing landing page, built as static HTML/CSS/JS for HubSpot.",
+  "scripts": {
+    "dev": "npm run sass:build && node scripts/build.js && concurrently -k -n sass,assets,serve \"npm:sass:watch\" \"node scripts/build.js --watch\" \"npm:serve\"",
+    "sass:watch": "sass --watch --source-map assets/src/scss/main.scss assets/dist/css/main.css",
+    "sass:build": "sass --no-source-map assets/src/scss/main.scss assets/dist/css/main.css",
+    "serve": "browser-sync start --server . --files \"index.html, assets/dist/**/*\" --no-notify --no-open",
+    "build": "sass --no-source-map --style=compressed assets/src/scss/main.scss assets/dist/css/main.css && node scripts/build.js"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.3",
+    "concurrently": "^9.1.2",
+    "sass": "^1.83.0"
+  }
+}

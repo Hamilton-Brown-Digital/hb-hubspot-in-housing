@@ -1,0 +1,12 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// Generic content section – add section-specific partials alongside this one.
+.hb-section {
+  padding: $section-pad-sm 0;
+  @include mq(lg) { padding: $section-pad 0; }
+
+  &--alt { background: $c-bg-alt; }
+}
+
+.hb-form-section { background: $c-bg-alt; }

@@ -1,0 +1,25 @@
+@use 'sass:color';
+@use '../abstracts/variables' as *;
+
+.hb-btn {
+  display: inline-block;
+  padding: 0.875rem 1.75rem;
+  border: 2px solid transparent;
+  border-radius: $radius;
+  font-weight: $fw-bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background $transition, color $transition, border-color $transition;
+
+  &--primary {
+    background: $c-accent;
+    color: $c-secondary;
+    &:hover { background: color.adjust($c-accent, $lightness: -8%); }
+  }
+
+  &--outline {
+    border-color: currentColor;
+    background: transparent;
+    &:hover { background: $c-primary; color: $c-secondary; border-color: $c-primary; }
+  }
+}

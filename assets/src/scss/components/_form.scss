@@ -1,0 +1,66 @@
+// Styles for the embedded HubSpot form (v2 embed, rendered with css: '').
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use 'buttons';
+
+.hb-hsform {
+  &__placeholder {
+    padding: 2rem;
+    border: 2px dashed $c-border;
+    text-align: center;
+    color: $c-text-muted;
+  }
+
+  .hs-form fieldset { max-width: none !important; }
+
+  .hs-form-field { margin-bottom: 1.25rem; }
+
+  label:not(.hs-form-booleancheckbox-display, .hs-form-radio-display) {
+    display: block;
+    margin-bottom: 0.375rem;
+    font-weight: $fw-bold;
+  }
+
+  .hs-input:not([type='checkbox'], [type='radio']) {
+    width: 100% !important;
+    padding: 0.75rem 1rem;
+    border: 1px solid $c-border;
+    border-radius: $radius;
+    font: inherit;
+    background: $c-bg;
+
+    &:focus { border-color: $c-accent; outline: none; }
+    &.invalid.error { border-color: $c-error; }
+  }
+
+  textarea.hs-input { min-height: 8rem; }
+
+  .form-columns-2 {
+    @include mq(md) {
+      display: flex;
+      gap: 1rem;
+      .hs-form-field { flex: 1; width: auto !important; float: none !important; }
+    }
+    .input { margin-right: 0 !important; }
+  }
+
+  .hs-error-msgs {
+    margin: 0.375rem 0 0;
+    padding: 0;
+    list-style: none;
+    color: $c-error;
+    font-size: 0.875rem;
+  }
+
+  .inputs-list { padding: 0; list-style: none; }
+
+  .hs-button {
+    @extend .hb-btn;
+    @extend .hb-btn--primary;
+    border: 0;
+    font: inherit;
+    font-weight: $fw-bold;
+  }
+
+  .submitted-message { font-size: 1.125rem; }
+}

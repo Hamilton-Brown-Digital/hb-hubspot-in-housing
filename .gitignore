@@ -32,3 +32,6 @@ __pycache__/
 
 # Claude working files
 Claude outputs/
+
+# Source maps
+*.map
