@@ -1,0 +1,915 @@
+// Theme utilitis
+@use '../utility/utility' as *;
+@use '../utility/variables' as *;
+@use '../utility/dynamicvariables' as *;
+@use '../utility/mixins' as *;
+
+
+/* -- Content
+--------------------------------- */
+
+// Show more (text after <!--more--> in Work WYSIWYGs)
+.showmore{
+	&__content{
+		// Paragraph margins (1rem) are left alone. overflow:hidden keeps them inside
+		// this box, and the -1rem margins cancel them out, so the open text sits
+		// exactly like normal paragraphs. JS animates height only, so nothing jumps.
+		overflow:hidden;
+		margin:-1rem 0px;
+
+		&:focus{
+			outline:0px none;
+		}
+	}
+}
+// Element + class (and every state) to match base.scss `button:not(.btn)`,
+// which would otherwise force opacity:1 and remove the underline
+button.showmore__button{
+	background:none;
+	color:inherit;
+	font:inherit;
+	font-size:$fontsizeSmall;
+	font-weight:$fontweightMedium;
+	text-transform:uppercase;
+
+	display:inline;
+
+	margin:0px;
+	padding:0px;
+	border:0px none;
+
+	cursor:pointer;
+
+	transition:opacity $transitionSpeed $transitionEaseInOut;
+
+	&,
+	&:active,
+	&:focus,
+	&:visited{
+		opacity:0.5;
+	}
+	&:hover,
+	&:focus-visible{
+		opacity:1.0;
+	}
+}
+.js .showmore__content,
+.js .showmore__stop{
+	display:none;
+}
+.no-js .showmore__toggle{
+	display:none;
+}
+
+.before_colour{
+	background-color:$green;
+
+	width:100%;
+	height:10rem;
+
+	display:block;
+	position:absolute;
+	bottom:calc(100% - 0.1rem);
+	left:0px;
+	z-index:0;
+
+	margin:0px;
+	padding:0px;
+	border:0px none;
+
+	@include addSectionSpace(padding-top);
+	@include removeSectionSpace(margin-bottom);
+}
+
+.pagecontent{
+	width:100%;
+	height:auto;
+
+	display:grid;
+	position:relative;
+	z-index:10;
+
+	margin:0px;
+	padding:0px;
+	border:0px none;
+
+	grid-template-columns:minmax(0, 1fr);
+
+	@include addSectionSpace(padding-top);
+	@include addSectionSpace(padding-bottom);
+
+	@include addSectionSpace(row-gap);
+
+	.content{
+		width:100%;
+		height:auto;
+
+		display:block;
+		position:relative;
+		z-index:0;
+
+		margin:0px;
+		padding:0px $sideSpacing;
+		border:0px none;
+
+		&.remove_space{
+			@include removeSectionSpace(margin-top);
+		}
+
+		&.full_width{
+			padding:0px;
+		}
+
+
+		// Grid
+		.grid{
+			width:100%;
+			height:auto;
+
+			display:grid;
+			position:relative;
+			z-index:10;
+
+			margin:0px;
+			padding:0px;
+			border:0px none;
+
+			column-gap:$verticalGutter;
+		}
+
+
+		// Content Components
+		.title,
+		.text{
+			p,
+			li{
+				a{
+					@include dynamicUnderline;
+				}
+				.btn{
+					margin:0.5rem 0px;
+				}
+			}
+		}
+
+		.image,
+		.video,
+		.media{
+			img{
+				width:100%;
+			}
+		}
+
+		.parallaximage{
+			width:auto;
+			height:auto;
+
+			display:block;
+			position:absolute;
+
+			margin:0px;
+			padding:0px;
+			border:0px none;
+
+			img{
+				position:relative;
+				z-index:0;
+			}
+		}
+
+		.accordion{
+			ul{
+				margin:0px;
+				padding:0px;
+				border:0px none;
+
+				li{
+					display:grid;
+					position:relative;
+
+					list-style:none;
+
+					margin:0px;
+					padding:0px;
+					border:0px none;
+
+					h3{
+						background-color:$lightgrey;
+
+						width:100%;
+						height:auto;
+
+						display:block;
+						position:relative;
+
+						margin:0.1em 0px;
+						padding:0px 2rem 0px 0.5rem;
+						border:0px none;
+
+						cursor:pointer;
+
+						&:hover{
+							background-color:$mediumgrey;
+						}
+
+						&::before,
+						&::after{
+							background-color:$darkgrey;
+
+							width:1rem;
+							height:0.1rem;
+
+							display:block;
+							position:absolute;
+							top:50%;
+							right:0.5rem;
+
+							margin:0px;
+							padding:0px;
+							border:0px none;
+
+							transition:transform calc($transitionSpeed * 2) $transitionEaseInOut;
+							transform:translateY(-50%) rotate(0deg);
+
+							content:'';
+						}
+
+						&::after{
+							transform:translateY(-50%) rotate(90deg);
+						}
+
+						&.jsAccordionActive{
+							&::before{
+								transform:translateY(-50%) rotate(135deg);
+							}
+							&::after{
+								transform:translateY(-50%) rotate(225deg);
+							}
+						}
+					}
+
+					div{
+						display:none;
+
+						margin:0px;
+						padding:0px;
+						border:0px none;
+					}
+
+					&.jsAccordionActive{
+						display:block;
+					}
+				}
+			}
+		}
+
+		.password{
+			h1{
+				@include fontSectionSubTitleLarge;
+			}
+			form{
+				input[type=password]{
+					margin-top:0.5rem;
+				}
+				input[type=submit]{
+					@include btn;
+					margin-top:2rem;
+				}
+			}
+		}
+
+		&.tiles{
+			@include addSectionSpace(padding-bottom);
+
+			.grid{
+				grid-template-columns:minmax(0, 1fr);
+				@include addSectionSpace(row-gap);
+			}
+
+			// Tiles
+			&:not(.tiles--work){
+				.grid{
+					row-gap:1rem;
+					@include responsive_from($xs_screen){
+						grid-template-columns:repeat(2, minmax(0, 1fr));
+					}
+					@include responsive_from($lg_screen){
+						grid-template-columns:repeat(3, minmax(0, 1fr));
+					}
+					@include responsive_from($xl_screen){
+						grid-template-columns:repeat(4, minmax(0, 1fr));
+					}
+				}
+			}
+
+			&--three_columns{
+				&:not(.tiles--work){
+					.grid{
+						@include responsive_from($xs_screen){
+							grid-template-columns:repeat(2, minmax(0, 1fr));
+						}
+						@include responsive_from($lg_screen){
+							grid-template-columns:repeat(3, minmax(0, 1fr));
+						}
+						@include responsive_from($xl_screen){
+							grid-template-columns:repeat(3, minmax(0, 1fr));
+						}
+					}
+				}
+			}
+
+			&--two_columns{
+				&:not(.tiles--work){
+					.grid{
+						@include responsive_from($xs_screen){
+							grid-template-columns:repeat(2, minmax(0, 1fr));
+						}
+						@include responsive_from($lg_screen){
+							grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+						}
+						@include responsive_from($xl_screen){
+							grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+						}
+					}
+				}
+			}
+
+			&--one_column{
+				&:not(.tiles--work){
+					.grid{
+						grid-template-columns:minmax(0, 1fr) !important;
+						@include responsive_from($sm_screen){
+							grid-template-columns:1fr 6fr 1fr !important;
+							& > .tile{
+								grid-column:2;
+							}
+						}
+						@include responsive_from($lg_screen){
+							grid-template-columns:1fr 4fr 1fr !important;
+						}
+						@include responsive_from($xl_screen){
+							grid-template-columns:1fr 2fr 1fr !important;
+						}
+					}
+				}
+			}
+		}
+
+
+		// Flexible Content
+		&.flexible_content{
+
+			// Column Sizing
+			.grid{
+				grid-template-columns:repeat(1, minmax(0, 1fr));
+			}
+			@include responsive_from($mobileBreak){
+				&--one_column{
+					.grid{
+						grid-template-columns:repeat(1, minmax(0, 1fr));
+						@include responsive_from($sm_screen){
+							grid-template-columns:minmax(0, 1fr) minmax(0, 6fr) minmax(0, 1fr);
+
+							& > *{
+								grid-column:2;
+							}
+						}
+						@include responsive_from($lg_screen){
+							grid-template-columns:minmax(0, 1fr) minmax(0, 4fr) minmax(0, 1fr);
+						}
+
+						@include responsive_from($xl_screen){
+							grid-template-columns:minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+						}
+					}
+				}
+				&--two_columns{
+					.grid{
+						grid-template-columns:repeat(2, minmax(0, 1fr));
+					}
+				}
+				&--two_columns_33_66{
+					.grid{
+						grid-template-columns:minmax(0, 1fr) minmax(0, 2fr);
+
+						@include responsive_to($md_screen){
+							grid-template-columns:repeat(2, minmax(0, 1fr));
+						}
+					}
+				}
+				&--two_columns_66_33{
+					.grid{
+						grid-template-columns:minmax(0, 2fr) minmax(0, 1fr);
+
+						@include responsive_to($md_screen){
+							grid-template-columns:repeat(2, minmax(0, 1fr));
+						}
+					}
+				}
+				&--three_columns{
+					.grid{
+						grid-template-columns:repeat(3, minmax(0, 1fr));
+
+						@include responsive_to($md_screen){
+							grid-template-columns:repeat(2, minmax(0, 1fr));
+						}
+					}
+				}
+				&--four_columns{
+					.grid{
+						grid-template-columns:repeat(4, minmax(0, 1fr));
+
+						@include responsive_to($md_screen){
+							grid-template-columns:repeat(2, minmax(0, 1fr));
+						}
+					}
+				}
+				&--one_column_wide{
+					.grid{
+						grid-template-columns:repeat(1, minmax(0, 1fr));
+					}
+				}
+			}
+
+
+			// Content Types
+			.content_column{
+				& > .text,
+				& > .image,
+				& > .video,
+				& > .media,
+				& > .image_carousel,
+				& > .quote,
+				& > .accordion,
+				& > .html,
+				& > .links{
+					margin:1rem 0px;
+				}
+
+				& > .image_carousel{
+					display:grid;
+					grid-template-columns:minmax(0, 1fr);
+
+					.flickity-viewport{
+						grid-column:1;
+						grid-row:1;
+						align-self:center;
+						justify-self:center;
+
+						width:100%;
+
+						position:relative;
+					}
+
+					.flickity-button{
+						grid-column:1;
+						grid-row:1;
+						align-self:center;
+
+						position:relative;
+						left:auto;
+						right:auto;
+						bottom:auto;
+						top:auto;
+
+						transform:none;
+
+						&.previous{
+							justify-self:left;
+							margin-left:1rem;
+						}
+
+						&.next{
+							justify-self:right;
+							margin-right:1rem;
+						}
+					}
+
+					.flickity-page-dots {
+						grid-column:1;
+						grid-row:2;
+						align-self:center;
+						justify-self:center;
+
+						position:relative;
+						bottom:auto;
+
+						margin:0.5rem 0px;
+					}
+				}
+
+				& > .quote{
+					blockquote{
+						font-size:1.2rem;
+						@include responsive_from($xs_screen){
+							font-size:1.575rem;
+						}
+						@include responsive_from($sm_screen){
+							font-size:1.95rem;
+						}
+						@include responsive_from($md_screen){
+							font-size:1.95rem;
+						}
+						@include responsive_from($lg_screen){
+							font-size:2.325rem;
+						}
+						@include responsive_from($xl_screen){
+							font-size:2.7rem;
+						}
+
+						.title{
+							text-transform:uppercase;
+							@include fontSectionMarker;
+						}
+
+						p{
+							font-weight:$fontweightRegular;
+						}
+						@include responsive_from($lg_screen){
+							& > p:last-of-type::after{
+								display:none;
+							}
+						}
+
+						cite{
+							display:grid;
+							row-gap:0.25rem;
+						}
+					}
+				}
+			}
+		}
+
+		// General Content
+		&.general_content{
+			@include responsive_from($mobileBreak){
+				.grid{
+					grid-template-columns:repeat(1, minmax(0, 1fr));
+					@include responsive_from($sm_screen){
+						grid-template-columns:minmax(0, 1fr) minmax(0, 6fr) minmax(0, 1fr);
+
+						& > *{
+							grid-column:2;
+
+							&.centred{
+								text-align:center;
+							}
+						}
+					}
+					@include responsive_from($lg_screen){
+						grid-template-columns:minmax(0, 1fr) minmax(0, 4fr) minmax(0, 1fr);
+					}
+
+					@include responsive_from($xl_screen){
+						grid-template-columns:minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+					}
+				}
+			}
+		}
+
+
+	// -- Articles ----------
+
+		// Article Archive
+		&.archive_header{
+			.grid{
+				.title{
+					h1{
+						&:not(.large){
+							@include fontEyebrow;
+						}
+					}
+
+					p{
+						text-transform:uppercase;
+						@include fontSectionSubTitleLarge;
+						em{
+							font-family:$fontfamilyPangaia;
+							letter-spacing:0px;
+						}
+						@include responsive_to($sm_screen){
+							br{
+								display:none;
+							}
+						}
+					}
+				}
+				.featured{
+					grid-column:1/-1;
+					@include addSectionSpace(padding-top);
+
+					.tile{
+						background-color:$lightgrey;
+
+						.link{
+							padding:$sideSpacing;
+
+							@include responsive_from($mobileBreak){
+								grid-template-columns:repeat(8, minmax(0, 1fr));
+								grid-template-rows:auto min-content;
+								column-gap:$sideSpacing;
+								padding-right:calc($sideSpacing + 0.65rem + $sideSpacing);
+
+								.image{
+									grid-column:5/9;
+									grid-row:1/3;
+								}
+
+								.title{
+									grid-column:1/5;
+									grid-row:1;
+									align-self:start;
+
+									font-size:2rem;
+									line-height:1.1;
+
+									@include responsive_from($lg_screen){
+										grid-column:1/4;
+									}
+								}
+
+								.category{
+									grid-column:1/3;
+									grid-row:2;
+									align-self:end;
+								}
+
+								.reading_time_author{
+									grid-column:3/5;
+									grid-row:2;
+									align-self:end;
+
+									@include responsive_from($lg_screen){
+										grid-column:2/4;
+										text-align:left;
+										margin-bottom:0.5rem;
+									}
+								}
+							}
+
+							&::after{
+								grid-column:1/-1;
+
+								width:auto;
+								height:auto;
+
+								position:relative;
+								display:block;
+
+								font-size:0.65rem;
+
+								content:'Featured article';
+
+								@include fontSectionMarker;
+
+								@include responsive_from($mobileBreak){
+									grid-column:unset;
+									position:absolute;
+									left:100%;
+									top:0px;
+									transform:translateX(calc($sideSpacing * -1)) translateY($sideSpacing) rotate(90deg);
+									transform-origin:top left;
+									white-space:nowrap;
+									content:'Featured article';
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// Article Single
+		&.article_header{
+			@include responsive_from($md_screen){
+				text-align:center;
+			}
+
+			.grid{
+				grid-template-columns:repeat(1, minmax(0, 1fr));
+				@include responsive_from($md_screen){
+					grid-template-columns:repeat(24, minmax(0, 1fr));
+				}
+
+				// Title
+				.title{
+					grid-column:1/-1;
+					grid-row:2;
+					@include responsive_from($lg_screen){
+						grid-column:4/22;
+					}
+
+					h1,
+					h3{
+						@include fontSectionTitle;
+
+						@include responsive_from($xl_screen){
+							font-size:4.0rem;
+						}
+					}
+					h1{
+						@include addSectionSpace(margin-bottom);
+						@include responsive_from($lg_screen){
+							@include addSectionSpace(padding-bottom);
+						}
+					}
+				}
+
+				// Reading Time
+				.reading_time_author{
+					grid-column:1/-1;
+					grid-row:3;
+
+					font-size:0.65rem !important;
+
+					margin:1rem 0px;
+
+					@include fontSectionMarker;
+				}
+
+				// Categories
+				.categories{
+					grid-column:1/-1;
+					grid-row:1;
+
+					display:flex;
+					flex-wrap:wrap;
+					align-items:center;
+					justify-content:flex-start;
+					gap:0.5rem;
+
+					margin:1rem 0px;
+
+					@include responsive_from($md_screen){
+						justify-content:center;
+					}
+
+					span{
+						@include chips;
+					}
+				}
+
+				// Image
+				.image,
+				.video{
+					grid-column:1/-1;
+					grid-row:4;
+					@include responsive_from($md_screen){
+						grid-column:3/23;
+					}
+					@include responsive_from($lg_screen){
+						grid-column:5/21;
+					}
+					@include responsive_from($xl_screen){
+						grid-column:7/19;
+						margin:1rem calc($verticalGutter * -1);
+					}
+
+					img{
+						width:auto;
+						min-width:100%;
+					}
+
+				}
+			}
+		}
+
+		&.article_content{
+			width:100%;
+			height:auto;
+
+			display:grid;
+			position:relative;
+			z-index:0;
+
+			margin:0px;
+			padding:0px;
+			border:0px none;
+
+			grid-template-columns:minmax(0, 1fr);
+			@include addSectionSpace(row-gap);
+			@include addSectionSpace(padding-bottom);
+
+			// Share Buttons
+			.share_buttons{
+				grid-row:1;
+
+				@include removeSectionSpace(margin-bottom);
+
+				@include responsive_from($mobileBreak){
+					height:0px;
+					display:flex;
+					z-index:10;
+
+					position:absolute;
+					top:0.2rem;
+					left:0px;
+
+				}
+
+				.sharethis{
+					width:auto;
+					height:auto;
+
+					display:flex;
+					flex-direction:row;
+					align-items:center;
+					justify-items:flex-start;
+					gap:2rem 0.8rem;
+					position:relative;
+
+					margin:0px;
+					padding:0px;
+					border:0px none;
+
+					@include responsive_from($mobileBreak){
+						flex-direction:column;
+						align-items:flex-start;
+					}
+
+					h2{
+						margin:1rem 0px;
+						@include fontSectionMarker;
+					}
+
+					.sharethis-inline-share-buttons{
+						width:auto;
+						height:auto;
+
+						display:flex !important;
+						flex-direction:row !important;
+						gap:0.8rem 0.4rem !important;
+						position:relative !important;
+
+						margin:0px !important;
+						padding:0px !important;
+						border:0px none !important;
+
+						@include responsive_from($mobileBreak){
+							flex-direction:column !important;
+						}
+
+						.st-btn{
+							background-color:$backgroundColor !important;
+
+							width:46px !important;
+							height:46px !important;
+
+							display:grid !important;
+							position:relative !important;
+
+							margin:0px !important;
+							padding:0px !important;
+							border:0px none !important;
+
+							border:0.1rem solid $bodyColor !important;
+							border-radius:50% !important;
+
+							img{
+								align-self:center;
+								justify-self:center;
+
+								width:auto;
+								height:auto;
+
+								display:block;
+								position:relative;
+								top:auto !important;
+								left:auto !important;
+
+								margin:0px;
+								padding:0px;
+								border:0px none;
+
+								filter:$filter_bodyColor;
+							}
+
+							&[data-network=facebook]{
+								img{
+									left:-0.1em !important;
+								}
+							}
+							&[data-network=twitter]{
+							}
+							&[data-network=linkedin]{
+								img{
+									top:-0.05em !important;
+								}
+							}
+
+							&:hover{
+								background-color:$bodyColor !important;
+								top:auto !important;
+								opacity:1.0 !important;
+
+								img{
+									filter:$filter_backgroundColor;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

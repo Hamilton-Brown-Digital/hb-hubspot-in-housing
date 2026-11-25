@@ -1,0 +1,137 @@
+/* = Variables CSS file for Custom HTML Template
+ * -----------------------------------------------
+ *	- Layout
+ *	- Colours
+ *  - Fonts
+ * ----------------------------------------------- */
+
+
+// Layout
+// -----------------------
+
+	// Breakpoints
+    $xxs_screen:360px;
+    $xs_screen:576px;
+    $sm_screen:768px;
+    $md_screen:992px;
+    $lg_screen:1200px;
+    $xl_screen:1600px;
+    $xxl_screen:1920px;
+    $full_screen:5760px;
+
+    $mobileBreak:768px;
+    $tabletBreak:992px;
+    $desktopBreak:1920px;
+
+    $menuBreak:1024px; // Below this the header uses the mobile menu button (the full row of links doesn't fit)
+
+
+	// Spacing
+	$headerSpacing:3.75rem;
+	$headerSpacing:5rem;
+	$verticalGutter:1.5rem; // V space between objects [30px]
+	$horizontalGutter:1.5rem; // h space between objects/columns [30px]
+	$sectionSpacing:7rem; // v space between sections [140px = (200px - (verticalGutter * 2))]
+	$sideSpacing:3rem; // Space between column and screen edges [30px]
+	$sideSpacing:3rem; // Space between column and screen edges [60px]
+	$borderRadius:1.5rem; // Corner rounding [30px]
+
+	// Transitions
+	$transitionSpeed:250ms;
+	$transitionEaseIn:cubic-bezier(0.550,  0.055, 0.675, 0.190);
+	$transitionEaseOut:cubic-bezier(0.215,  0.610, 0.355, 1.000);
+	$transitionEaseInOut:cubic-bezier(0.645,  0.045, 0.355, 1.000);
+
+
+// Colours
+// -----------------------
+
+	$transparent:transparent;
+
+	// Primary
+	$green:#1EFF00; 		// rgba(30, 255, 0, 1); 	- Atomic Apple
+	$pink:#FF32BE; 		// rgba(255, 50, 190, 1); 	- Electric Flamingo
+	$black:#000000; 		// rgba(0, 0, 0, 1); 		- Eerie Void
+	$white:#FFFFFF; 		// rgba(255, 255, 255, 1); 	- Arctic Fox
+
+	// Secondary
+	$lightblue:#00A9E0; 	// rgba(0, 169, 224, 1); 	- Bodacious Smurf
+	$orange:#ED8B00; 		// rgba(237, 139, 0, 1); 	- Flaming Wotsit
+	$yellow:#FCE300; 		// rgba(252, 227, 0, 1); 	- Raving Canary
+
+	// Grey
+	$lightgrey:#D9D9D6; 	// rgba(217, 217, 214, 1); 	- Mundane Mist
+	$mediumgrey:#B1B3B3; 	// rgba(177, 179, 179, 1); 	- Concrete Jungle
+	$darkgrey:#75787B; 	// rgba(117, 120, 123, 1); 	- Effervescent Elephant
+
+	// Charts
+	$tangerine:#FFB50A; 	// rgba(254, 182, 9, 1);
+	$salmon:#F23D47;		// rgba(242, 62, 71, 1);
+	$red:#C11A29;			// rgba(193, 25, 42, 1);
+	$purple:#802696;		// rgba(127, 37, 150, 1);
+	$darkblue:#365CA8;		// rgba(53, 92, 168, 1);
+	$teal:#1CC487;			// rgba(29, 197, 136, 1);
+	$turquoise:#08E8DE;	// rgba(8, 232, 222, 1);
+
+	// Tints
+	// $tint_green_10:mix($green, $white, 10%);
+	// $tint_pink_10:mix($pink, $white, 10%);
+	// $tint_black_5:mix($black, $white, 5%);
+	// $tint_black_3:mix($black, $white, 3%);
+	// $tint_lightblue_10:mix($lightblue, $white, 10%);
+	// $tint_orange_10:mix($orange, $white, 10%);
+	// $tint_yellow_10:mix($yellow, $white, 10%);
+
+	// Filters
+	$filter_green:brightness(0) saturate(100%) invert(50%) sepia(77%) saturate(1067%) hue-rotate(73deg) brightness(121%) contrast(119%);
+	$filter_pink:brightness(0) saturate(100%) invert(33%) sepia(66%) saturate(3855%) hue-rotate(303deg) brightness(108%) contrast(101%);
+	$filter_black:brightness(0) saturate(0%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+	$filter_white:brightness(0) saturate(0%) invert(100%) sepia(0%) saturate(100%) hue-rotate(0deg) brightness(100%) contrast(100%);
+	$filter_lightblue:brightness(0) saturate(100%) invert(49%) sepia(83%) saturate(2453%) hue-rotate(161deg) brightness(97%) contrast(101%);
+	$filter_orange:brightness(0) saturate(100%) invert(61%) sepia(45%) saturate(4094%) hue-rotate(6deg) brightness(98%) contrast(105%);
+	$filter_yellow:brightness(0) saturate(100%) invert(83%) sepia(68%) saturate(686%) hue-rotate(353deg) brightness(94%) contrast(111%);
+	$filter_lightgrey:brightness(0) saturate(100%) invert(99%) sepia(2%) saturate(2069%) hue-rotate(34deg) brightness(109%) contrast(70%);
+	$filter_mediumgrey:brightness(0) saturate(100%) invert(81%) sepia(7%) saturate(47%) hue-rotate(131deg) brightness(88%) contrast(91%);
+	$filter_darkgrey:brightness(0) saturate(100%) invert(49%) sepia(2%) saturate(721%) hue-rotate(169deg) brightness(96%) contrast(92%);
+	$filter_formerror:brightness(0) saturate(100%) invert(22%) sepia(63%) saturate(4250%) hue-rotate(343deg) brightness(76%) contrast(100%);;
+
+	// Special
+	$formerror:$red;
+	$formsuccess:$teal;
+	$formnotice:$lightblue;
+	$testing:rgba($red, 0.25);
+
+
+
+
+// Fonts
+// -----------------------
+
+	// Font Family
+	$fontfamilyGTAmerica:'GT-America-Standard', sans-serif; // 400, 500, 700, 900
+	$fontfamilyPangaia:'PPPangaia-MediumItalic', serif;	// 500
+	$fontfamilyGTAmericaMono:'GT-America-Mono', monospace; // 400
+
+	$fontfamilySansSerif:$fontfamilyGTAmerica;
+	$fontfamilySerif:$fontfamilyPangaia;
+	$fontfamilyMono:$fontfamilyGTAmericaMono;
+
+	// Font Size
+	$fontsizeSmaller:0.65rem;
+	$fontsizeSmall:0.8rem;
+	$fontsizeNormal:1.0rem;
+	$fontsizeLarge:1.2rem;
+	$fontsizeLarger:1.4rem;
+	$fontsizeVeryLarge:2.2rem;
+	$fontsizeExtraLarge:3.2rem;
+
+	// Font Weight
+	$fontweightRegular:400;
+	$fontweightMedium:500;
+	$fontweightBold:700;
+	$fontweightBlack:900;
+
+	// Line Height
+	$lineheightSmall:1.2;
+	$lineheightNormal:1.5;
+	$lineheightLarge:2.1;

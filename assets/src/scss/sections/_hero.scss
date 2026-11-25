@@ -1,14 +1,152 @@
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use '../page' as *;
 
-.hb-hero {
-  padding: $section-pad-sm 0;
-  background: $c-bg-alt;
-  @include mq(lg) { padding: $section-pad 0; }
+// Hero: green band (820px tall at 1920) with the IN-HOUSING / M()RE / CAPACITY. CAPABILITY. POSSIBILITIES. logo.
+// The logo pieces are the Figma vectors (img/more/*.svg), placed in % of the logo box so the
+// composition holds at any width. The in-house GIF sits between the brackets.
+//
+// Animation (main.js adds the classes in turn):
+//   .jsMoreIn    – M()RE fades in, closed up (brackets together, no image)
+//   .jsMoreOpen  – M( and )RE move apart and the image opens out from the middle
+//   .jsMoreText  – IN-HOUSING and the strapline fade in around it
+//   body.jsHeroDone – added at the end (the content below no longer waits for it)
 
-  &__intro {
-    max-width: 40rem;
-    margin-bottom: 2rem;
-    font-size: 1.125rem;
-  }
+.lp-hero{
+	background-color:$green;
+	color:$black;
+	position:relative;
+	z-index:0;
+	overflow:hidden;
+
+	margin-top:calc(-1 * #{$headerSpacing}); // Sit behind the fixed header
+
+	// 210px above and below the logo at 1920 (never tucked under the header)
+	padding:max(10.94vw, calc(#{$headerSpacing} + 2rem)) $sideSpacing 10.97vw;
+
+	@include responsive_to($sm_screen){
+		padding:calc(#{$headerSpacing} + 3rem) $sideSpacing 3.5rem;
+	}
+
+	&__title{
+		margin:0px;
+	}
+}
+
+.lp-visuallyhidden{
+	position:absolute !important;
+	width:1px;
+	height:1px;
+	margin:-1px;
+	padding:0px;
+	overflow:hidden;
+	clip:rect(0 0 0 0);
+	white-space:nowrap;
+	border:0px;
+}
+
+// Logo box: 1190 x 399 in Figma (62vw at 1920), centred
+.lp-more{
+	--lpMoreShift:13.908cqw; // How far each half sits in towards the middle while closed (brackets 20px apart at 1920)
+
+	display:block;
+	position:relative;
+	width:61.98vw;
+	aspect-ratio:1190/399.37;
+	margin:0px auto;
+	container-type:inline-size;
+
+	@include responsive_to($sm_screen){
+		width:100%;
+	}
+
+	& > img,
+	&__image{
+		display:block;
+		position:absolute;
+		height:auto;
+	}
+
+	&__inhousing{ left:0%; top:0%; width:20%; }
+	&__m{ left:0%; top:14.5%; width:20%; }
+	&__paren--left{ left:22.616%; top:5.829%; width:7.311%; }
+	&__paren--right{ left:59.376%; top:5.829%; width:7.311%; }
+	&__re{ left:69.334%; top:14.5%; width:30.672%; }
+	&__tagline{ left:0%; top:87.33%; width:99.832%; }
+
+	&__image{
+		left:31.176%;
+		top:14.523%;
+		width:26.807%;
+		height:58.091% !important;
+		overflow:hidden;
+
+		img{
+			display:block;
+			width:100%;
+			height:100%;
+			object-fit:cover;
+			object-position:center;
+		}
+	}
+}
+
+// Animated states (JS only)
+$lpMoreFade:700ms;
+$lpMoreOpen:1100ms;
+
+html.js .lp-more{
+	&__m,
+	&__paren,
+	&__re{
+		opacity:0;
+		transition:opacity $lpMoreFade $transitionEaseInOut, translate $lpMoreOpen $transitionEaseInOut;
+	}
+	&__m,
+	&__paren--left{
+		translate:var(--lpMoreShift) 0px;
+	}
+	&__paren--right,
+	&__re{
+		translate:calc(-1 * var(--lpMoreShift)) 0px;
+	}
+	&__image{
+		clip-path:inset(0px 50% 0px 50%);
+		transition:clip-path $lpMoreOpen $transitionEaseInOut;
+	}
+	&__inhousing,
+	&__tagline{
+		opacity:0;
+		transition:opacity $lpMoreFade $transitionEaseInOut;
+	}
+
+	&.jsMoreIn{
+		.lp-more__m,
+		.lp-more__paren,
+		.lp-more__re{
+			opacity:1;
+		}
+	}
+	&.jsMoreOpen{
+		.lp-more__m,
+		.lp-more__paren,
+		.lp-more__re{
+			translate:0px 0px;
+		}
+		.lp-more__image{
+			clip-path:inset(0px 0px 0px 0px);
+		}
+	}
+	&.jsMoreText{
+		.lp-more__inhousing,
+		.lp-more__tagline{
+			opacity:1;
+		}
+		.lp-more__tagline{
+			transition-delay:200ms;
+		}
+	}
+	// Straight to the end (reduced motion, or the page opens further down)
+	&.jsMoreNoAnim,
+	&.jsMoreNoAnim *{
+		transition:none !important;
+	}
 }

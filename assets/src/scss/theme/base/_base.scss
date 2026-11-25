@@ -1,0 +1,1025 @@
+// Theme utilitis
+@use '../utility/utility' as *;
+@use '../utility/variables' as *;
+@use '../utility/dynamicvariables' as *;
+@use '../utility/mixins' as *;
+
+
+/* -- Elements
+--------------------------------- */
+
+*,
+*::before,
+*::after{
+    box-sizing:border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0ms !important;
+        transition-duration: 0ms !important;
+    }
+}
+
+::-moz-selection {
+    background:rgba($mediumgrey, 0.75);
+}
+::selection {
+    background:rgba($mediumgrey, 0.75);
+}
+
+
+// -- HTML & Body ----------
+
+    html,
+    body{
+        background-color:$backgroundColor;
+
+        width:100%;
+        min-width:320px;
+        height:auto;
+
+        color:$bodyColor;
+        font-family:$fontfamilySansSerif;
+        font-size:20px;
+        font-weight:$fontweightRegular;
+        line-height:1.5;
+        text-align:left;
+
+        display:block;
+        position:relative;
+        z-index:0;
+
+        margin:0px;
+        padding:0px;
+        border:0px none;
+
+        overflow-x:hidden;
+        overflow-y:overlay;
+
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
+
+        scroll-behavior:smooth;
+
+        transition: background-color $transitionEaseInOut calc($transitionSpeed * 2),
+                    color $transitionEaseInOut calc($transitionSpeed * 2),
+                    filter $transitionEaseInOut calc($transitionSpeed * 2);
+
+        @include responsive_from($desktopBreak){
+            font-size:1.042vw;
+        }
+    }
+    html{
+        @include responsive_to($mobileBreak){
+            &:not(.allowScrollMobile){
+                overflow-y:hidden !important;
+                height:100vh;
+                body{
+                    overflow-y:hidden !important;
+                    height:100vh;
+                }
+            }
+        }
+        @include responsive_from($mobileBreak){
+            &:not(.allowScrollDesktop){
+                overflow-y:hidden !important;
+                height:100vh;
+                body{
+                    overflow-y:hidden !important;
+                    height:100vh;
+                }
+            }
+        }
+    }
+    body{
+        &.bgbodyColor{
+            background-color:$backgroundColor;
+            color:$bodyColor;
+        }
+    }
+
+
+// -- Headings ----------
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6{
+        color:inherit;
+        font-family:inherit;
+        font-size:inherit;
+        font-style:inherit;
+        font-weight:inherit;
+        line-height:inherit;
+
+        margin:1rem 0px;
+        padding:0px;
+        border:0px none;
+
+        -webkit-font-smoothing:antialiased;
+          -moz-osx-font-smoothing:grayscale;
+
+        & b,
+        & strong{
+            font-weight:inherit;
+        }
+
+        & em,
+        & i{
+            font-family:$fontfamilyPangaia;
+            font-style:italic;
+            font-weight:$fontweightMedium;
+        }
+
+        & b em,
+        & b i,
+        & strong em,
+        & strong i,
+        & em b,
+        & em strong,
+        & i b,
+        & i strong{
+            font-family:$fontfamilyPangaia;
+            font-style:italic;
+            font-weight:$fontweightMedium;
+        }
+    }
+
+    h1{
+        @include fontSectionTitle;
+    }
+    h2{
+        @include fontSectionSubTitleSmall;
+    }
+    h3{
+        font-size:$fontsizeLarge;
+        @include fontSectionSubTitleSmall;
+    }
+    h4,
+    h5,
+    h6{
+        font-size:$fontsizeNormal;
+        @include fontSectionSubTitleSmall;
+    }
+
+    // Large space after elements
+    p,
+    ol,
+    ul,
+    li,
+    blockquote{
+        & + h1,
+        & + h2,
+        & + h3,
+        & + h4,
+        & + h5,
+        & + h6{
+            margin-top:2.5rem;
+        }
+    }
+
+    // Smaller space after titles
+    // h1,
+    // h2,
+    // h3,
+    h4,
+    h5,
+    h6{
+        & + h1,
+        & + h2,
+        & + h3,
+        & + h4,
+        & + h5,
+        & + h6{
+            margin-top:-0.5rem;
+        }
+    }
+
+
+// -- Paragraph ----------
+
+    p{
+        color:inherit;
+        font-family:inherit;
+        font-size:inherit;
+        font-style:normal;
+        font-weight:inherit;
+        font-weight:inherit;
+        line-height:inherit;
+
+        margin:1rem 0px;
+        padding:0px;
+        border:0px none;
+
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
+    }
+
+
+// -- Lists ----------
+
+    ul,
+    ol{
+        color:inherit;
+        font-family:inherit;
+        font-size:inherit;
+        font-style:normal;
+        font-weight:inherit;
+        line-height:inherit;
+
+        margin:1rem 0px;
+        padding:0px 0px 0px 2rem;
+        border:0px none;
+
+        li{
+            color:inherit;
+            font-family:inherit;
+            font-size:inherit;
+            font-style:normal;
+            font-weight:inherit;
+            line-height:inherit;
+
+            list-style-position:outside;
+
+            margin:0.5rem 0px;
+        }
+
+        ol,
+        ul{
+            ol,
+            ul{
+                margin-top:0px;
+
+                li{
+                    font-size:$fontsizeSmall;
+                    font-weight:$fontweightMedium;
+                    &::marker{
+                        font-size:1em;
+                    }
+                }
+            }
+        }
+    }
+
+
+    // OL
+    ol li{
+        &::marker{
+            font-family:$fontfamilyGTAmericaMono;
+            font-size:$fontsizeSmall;
+            font-weight:$fontweightRegular;
+        }
+    }
+
+
+    // UL
+    ul li{
+        // list-style:square;
+		list-style-type: "\2013\00A0\00A0";
+        &::marker{
+            color:$bodyColor;
+            font-family:$fontfamilyGTAmerica;
+            font-weight:$fontweightRegular;
+        }
+    }
+
+
+    // Description
+    dl{
+        width:100%;
+        height:auto;
+
+        display:block;
+        position:relative;
+
+        margin:0px;
+        padding:0px;
+        border:0px none;
+
+        dt,
+        dd{
+            width:100%;
+            height:auto;
+
+            display:block;
+            position:relative;
+
+            margin:1rem 0px;
+            padding:0px;
+            border:0px none;
+        }
+
+        dt{
+            font-weight:$fontweightMedium;
+        }
+
+        dt + dd{
+            margin-top:-1rem;
+        }
+    }
+
+// -- Emphasis ----------
+
+    em,
+    i,
+    var{
+        font-style:italic;
+        font-weight:$fontweightRegular;
+    }
+
+    b,
+    strong{
+        font-style:normal;
+        font-weight:$fontweightMedium;
+    }
+
+    b em,
+    b i,
+    em b,
+    em strong,
+    i b,
+    i strong,
+    strong em,
+    strong i {
+        font-style:italic;
+        font-weight:$fontweightMedium;
+    }
+
+    address,
+    ins{
+        color:$bodyColor;
+    }
+
+    del{
+        color:$formerror;
+    }
+
+    ins{
+        color:$formsuccess;
+    }
+
+    code,
+    kbd,
+    pre,
+    samp,
+    var{
+        color:$mediumgrey;
+        font-family:$fontfamilyMono;
+        font-size:$fontsizeSmall;
+        font-style:normal;
+    }
+
+    q{
+        color:inherit;
+        font-weight:$fontweightRegular;
+        font-style:italic;
+    }
+
+
+// -- Additional Emphasis and Formatting Classes ----------
+
+    .largeText,
+    .fontsizeLarge{
+        font-size:$fontsizeLarge;
+        line-height:inherit;
+    }
+
+    .smallText,
+    .fontsizeSmall{
+        font-size:$fontsizeSmall;
+        line-height:inherit;
+    }
+
+    .fontstyleHighlight{
+        font-family:$fontfamilyPangaia;
+        font-style:italic;
+        font-weight:$fontweightMedium;
+    }
+
+    .fontstyleEyebrow{
+        @include fontEyebrow;
+    }
+
+
+// -- Line Break ----------
+
+    hr{
+        width:100%;
+        border:0px;
+        border-top:0.05rem solid $bodyColor;
+        display:inline-block;
+        vertical-align:top;
+
+        margin:1rem auto;
+
+        &::after{
+            display:block;
+            clear:both;
+            content:'';
+        }
+    }
+
+    // Large space after elements
+    *{
+        hr{
+            margin-top:1.5rem;
+        }
+    }
+
+
+// -- Blockquote ----------
+
+    blockquote{
+        width:100%;
+        height:auto;
+
+        display:block;
+        position:relative;
+
+        color:inherit;
+        font-family:$fontfamilySansSerif;
+        font-weight:$fontweightRegular;
+        font-size:$fontsizeLarge;
+
+        margin:1rem auto;
+        padding:0px 0px 0px 1.5em;
+        border:0px none;
+
+        & > p{
+            font-family:$fontfamilySansSerif;
+            font-weight:$fontweightMedium;
+            font-size:inherit;
+            line-height:1.3;
+
+            // Quote Marks
+            &:first-of-type{
+                position:relative;
+
+                &::before{
+                    position:absolute;
+                    top:0.01em;
+                    right:100%;
+
+                    font-family:$fontfamilyGTAmerica;
+                    font-size:2em;
+                    font-weight:$fontweightBlack;
+                    line-height:1.0;
+
+                    padding-right:0.25em;
+
+                    content:'\201C';
+                }
+            }
+            &:last-of-type::after{
+                padding-left:2px;
+                content:'\201D';
+            }
+        }
+    }
+
+    cite{
+        font-size:$fontsizeNormal;
+        font-style:normal;
+        line-height:1.2;
+    }
+
+
+// -- Links ----------
+
+    a{
+        &:not(.btn){
+            &,
+            &:active,
+            &:focus,
+            &:visited,
+            &:hover{
+                color:inherit;
+                font-family:inherit;
+                outline:none;
+                text-decoration:none;
+                opacity:1.0;
+            }
+        }
+    }
+
+    button,
+    input[type=button],
+    input[type=reset],
+    input[type=submit]{
+        &:not(.btn){
+            &,
+            &:active,
+            &:focus,
+            &:visited,
+            &:hover{
+                color:inherit;
+                font-family:inherit;
+                outline:none;
+                text-decoration:none;
+                opacity:1.0;
+            }
+        }
+    }
+
+
+// -- Images ----------
+
+    img,
+    .wp-caption{
+        width:auto;
+        max-width:100%;
+        height:auto;
+
+        display:block;
+        position:relative;
+
+        &.wp-caption{
+            margin:0.25rem 0px 0.75rem;
+        }
+
+        &.alignleft,
+        &.alignright,
+        &.aligncenter{
+            margin:0.25rem 0px 0.75rem;
+            &.alignleft{
+                float:left;
+                padding-right:2rem;
+                text-align:left;
+            }
+            &.alignright{
+                float:right;
+                padding-left:2rem;
+                text-align:right;
+                text-align:left;
+            }
+            &.aligncenter{
+                margin:0.75rem auto;
+                text-align:center;
+                text-align:left;
+            }
+        }
+    }
+
+    figure{
+        margin:0px;
+    }
+
+    caption,
+    figcaption,
+    .wp-caption-text{
+        width:100%;
+        height:auto;
+
+        display:grid;
+        position:relative;
+
+        color:$bodyColor;
+        font-size:$fontsizeSmall;
+        font-weight:$fontweightMedium;
+
+        margin:0.75rem auto 0px;
+        padding:0px;
+        border:0px none;
+    }
+
+
+// -- iframe ----------
+
+    iframe{
+        margin:0px;
+        padding:0px;
+        border:0px none;
+    }
+
+
+// -- Tables ----------
+
+    table {
+        background-color:transparent;
+
+        width:100%;
+        height:auto;
+
+        color:inherit;
+        font-size:$fontsizeSmall;
+
+        margin:1rem 0px;
+        border:1px solid $bodyColor;
+        border-collapse: collapse;
+
+        caption {
+            width:100%;
+            text-align:left;
+            margin-left:10px;
+        }
+
+        thead,
+        tbody,
+        tfoot{
+            th,
+            td{
+                background-color:transparent;
+                position:relative;
+            }
+
+            th{
+                font-size:$fontsizeNormal;
+                font-weight:$fontweightRegular;
+
+                &::before{
+                    background:$bodyColor;
+
+                    width:100%;
+                    height:100%;
+
+                    display:block;
+                    position:absolute;
+                    left:0px;
+                    top:0px;
+                    z-index:-1;
+
+                    opacity:0.1;
+
+                    content:'';
+                }
+            }
+        }
+
+        th,
+        td {
+            padding:0.5em;
+            border:1px solid $bodyColor;
+        }
+    }
+
+
+// -- Forms ----------
+
+    form{
+        width:100%;
+        height:auto;
+
+        display:block;
+        position:relative;
+
+        margin:0px auto;
+        padding:0px;
+        border:0px none;
+
+        // Placeholders
+        ::-webkit-input-placeholder{
+            color:$lightgrey;
+        }
+        ::-moz-placeholder{
+            color:$lightgrey;
+        }
+        :-ms-input-placeholder{
+            color:$lightgrey;
+        }
+        ::-ms-input-placeholder{
+            color:$lightgrey;
+        }
+        ::placeholder{
+            color:$lightgrey;
+        }
+
+        // Labels
+        label,
+        legend{
+            width:100%;
+            height:auto;
+
+            display:block;
+            position:relative;
+
+            color:$bodyColor;
+            font-size:$fontsizeSmall;
+            font-weight:$fontweightMedium;
+
+            margin:0px auto;
+            padding:0px;
+            border:0px none;
+        }
+
+        // Inputs
+        input[type=color],
+        input[type=date],
+        input[type=datetime-local],
+        input[type=datetime],
+        input[type=email],
+        input[type=file],
+        input[type=month],
+        input[type=number],
+        input[type=password],
+        input[type=search],
+        input[type=tel],
+        input[type=text],
+        input[type=time],
+        input[type=url],
+        input[type=week],
+        select,
+        textarea{
+            background-color:$backgroundColor;
+
+            width:100%;
+            height:auto;
+
+            display:block;
+            position:relative;
+
+            color:$bodyColor;
+            font-size:1rem;
+            line-height:1.25rem;
+
+            margin:0px;
+            padding:0.65rem 0.75rem;
+            border:0.05rem solid $bodyColor;
+
+            border-radius:0.1rem;
+
+            &:hover{
+                background-color:$backgroundColor;
+            }
+
+            &:focus,
+            &:focus-visible{
+                background-color:$backgroundColor;
+                border-color:$mediumgrey;
+                border-radius:0px;
+                outline:1px solid $green;
+                outline-offset:-1px;
+                border-radius:0.1rem;
+
+
+                &::-webkit-input-placeholder{
+                    color:$mediumgrey;
+                }
+                &::-moz-placeholder{
+                    color:$mediumgrey;
+                }
+                &:-ms-input-placeholder{
+                    color:$mediumgrey;
+                }
+                &::-ms-input-placeholder{
+                    color:$mediumgrey;
+                }
+                &::placeholder{
+                    color:$mediumgrey;
+                }
+            }
+
+            &[readonly],
+            &[disabled]{
+                cursor:default;
+
+                &,
+                &:hover,
+                &:focus,
+                &:focus-visible{
+                    opacity:0.25;
+                    border-bottom:1px solid $bodyColor;
+                }
+            }
+        }
+        input[type=color]{
+            width:100px;
+            height:100px;
+
+            padding:0px;
+            border:1px solid $bodyColor;
+        }
+        input[type=date],
+        input[type=datetime-local],
+        input[type=datetime],
+        input[type=month],
+        input[type=number],
+        input[type=time],
+        input[type=week]{
+            max-width:200px;
+        }
+        input[type=file]{
+            font-size:$fontsizeSmall;
+        }
+        textarea{
+            min-height:calc(0.65rem + 0.65rem + calc(1.25rem * 2));
+            resize:vertical;
+        }
+        select{
+            &,
+            &:hover{
+                &:not([multiple],[size]){
+                    background-image:url('../../dist/img/icon-selectArrow.svg');
+                    background-repeat:no-repeat;
+                    background-position:center right;
+                    background-size:3em;
+
+                    padding-right:3em;
+
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                            appearance: none;
+                    option{
+                        background-color: $backgroundColor;
+                        border: none;
+                    }
+                }
+                &[multiple],
+                &[size]{
+                    background-color:$backgroundColor;
+                    color:$bodyColor;
+                    border:1px solid $bodyColor;
+
+                    option{
+                        padding:0.25rem;
+                    }
+                }
+            }
+        }
+
+        // Checkbox / Radio styling
+        input[type="checkbox"],
+        input[type="radio"]{
+            width:1rem;
+            height:1rem;
+
+            display:block;
+            position: absolute;
+            top:0.75rem;
+            left:0.75rem;
+            z-index:100;
+
+            margin:0px;
+            padding:0px;
+            border:0px none;
+
+            outline:none;
+            opacity:0;
+            -webkit-appearance: none;
+                -moz-appearance: none;
+                    appearance: none;
+            cursor: pointer;
+
+            & + label{
+                background:transparent;
+
+                width:100%;
+                min-width:0px;
+                max-width:none !important;
+                height:auto;
+
+                display:block;
+                position:relative;
+
+                font-size:1.0rem;
+                line-height:1.25em;
+
+                margin:0px;
+                padding:0.25rem 1.25rem 0.25rem 1.75rem;
+                border:0px none;
+
+                cursor:pointer;
+
+                &:not([for]){
+                    cursor:default;
+                }
+
+                &::before{
+                    background-color:transparent;
+
+                    width:1.25rem;
+                    height:1.25rem;
+
+                    display:block;
+                    position:absolute;
+                    top:0.2rem;
+                    left:0rem;
+                    z-index:0;
+
+                    margin:0px auto;
+                    padding:0px;
+                    border:2px solid $bodyColor;
+                    border-radius:5px;
+
+                    content:'';
+                }
+
+                &::after{
+                    width:0.75rem;
+                    height:0.35rem;
+
+                    display:block;
+                    position:absolute;
+                    top:0.575rem;
+                    left:0.25rem;
+                    z-index:10;
+
+                    margin:0px auto;
+                    padding:0px;
+                    border:0px none;
+                    border-bottom:3px solid $backgroundColor;
+                    border-left:3px solid $backgroundColor;
+
+                    opacity:0;
+
+                    transform:rotate(-30deg);
+
+                    content:'';
+                }
+
+                &:hover{
+                    &::after{
+                        opacity:0.5;
+                        border-bottom:3px solid $bodyColor;
+                        border-left:3px solid $bodyColor;
+                    }
+                }
+            }
+            &:checked + label{
+                &:before {
+                    background-color:$bodyColor;
+                }
+                &:after {
+                    opacity:1.0;
+                }
+
+                &:hover{
+                    &::before{
+                        background-color:$bodyColor;
+                    }
+                    &::after{
+                        opacity:1.0;
+                        border-bottom:3px solid $backgroundColor;
+                        border-left:3px solid $backgroundColor;
+                    }
+                }
+            }
+            &[disabled]{
+                &,
+                & + label,
+                &:checked + label{
+                    opacity:0.25;
+                    cursor:default;
+                }
+            }
+        }
+        input[type="radio"]{
+            & + label{
+                &::before{
+                    border-radius:100%;
+                }
+                &::after{
+                    background-color:$backgroundColor;
+
+                    width:0.55rem;
+                    height:0.55rem;
+
+                    top:0.55rem;
+                    left:0.35rem;
+
+                    border:0px none !important;
+                    border-radius:100%;
+                }
+                &::before{
+                    border-radius:100%;
+                }
+                &:hover{
+                    &::before{
+                        background-color:$bodyColor;
+                    }
+                    &::after{
+                        opacity:1.0;
+                    }
+                }
+            }
+            &:checked + label{
+                &:before {
+                    background-color:$bodyColor;
+                }
+                &:after {
+                    opacity:1.0;
+                }
+
+                &:hover{
+                    &::before{
+                        background-color:$bodyColor;
+                    }
+                    &::after{
+                        opacity:1.0;
+                    }
+                }
+            }
+            &[disabled]{
+                &,
+                & + label,
+                &:checked + label{
+                    opacity:0.25;
+                    cursor:default;
+                }
+            }
+        }
+    }

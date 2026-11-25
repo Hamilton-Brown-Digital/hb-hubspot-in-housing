@@ -1,0 +1,33 @@
+// Shared imports for the page partials: `@use '../page' as *;`
+@forward 'theme/utility/utility';
+@forward 'theme/utility/variables';
+@forward 'theme/utility/dynamicvariables';
+@forward 'theme/utility/mixins';
+
+@use 'theme/utility/utility' as *;
+@use 'theme/utility/variables' as *;
+@use 'theme/utility/mixins' as *;
+
+// Page-level helpers
+// Figma is drawn at 1920px wide, where 1rem = 20px (theme sets html font-size to 1.042vw from 1920px up).
+
+// Space between sections (150px in the design)
+@mixin lpSectionGap($cssProperty){
+	@include responsive_to($md_screen){
+		#{$cssProperty}:4rem;
+	}
+	@include responsive_from($md_screen){
+		#{$cssProperty}:7.5rem;
+	}
+}
+
+// Two equal columns with the theme gutter (885px + 30px + 885px at 1920)
+@mixin lpTwoColumns{
+	display:grid;
+	grid-template-columns:minmax(0, 1fr);
+	column-gap:$verticalGutter;
+
+	@include responsive_from($sm_screen){
+		grid-template-columns:repeat(2, minmax(0, 1fr));
+	}
+}

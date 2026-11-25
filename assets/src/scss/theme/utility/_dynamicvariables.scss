@@ -1,0 +1,88 @@
+
+@use './utility' as *;
+@use './variables' as *;
+
+/* = Dynamic Variables
+ * -----------------------------------------------
+ *	- Declare variables
+ *	- Set styles
+ * ----------------------------------------------- */
+
+
+// Declare variables
+// -----------------------
+
+$sideSpacing:var(--sideSpacing);
+$headerSpacing:var(--headerSpacing);
+
+$bodyColor:var(--bodyColor);
+$backgroundColor:var(--backgroundColor);
+$highlightColor:var(--highlightColor);
+
+$filter_bodyColor:var(--filter_bodyColor);
+$filter_backgroundColor:var(--filter_backgroundColor);
+$filter_highlightColor:var(--filter_highlightColor);
+
+
+// Set styles
+// -----------------------
+
+html{
+
+	// Header gutter based on sizing
+	@include responsive_to($mobileBreak){
+		--headerSpacing:#{3.75rem}; // Space behind the header to push the content down below it [30px]
+	}
+	@include responsive_from($mobileBreak){
+		--headerSpacing:#{4.75rem}; // Space behind the header to push the content down below it [60px]
+	}
+
+	// Side gutters based on sizing
+	@include responsive_to($tabletBreak){
+		--sideSpacing:#{1.5rem}; // Space between column and screen edges [30px]
+	}
+	@include responsive_from($tabletBreak){
+		--sideSpacing:#{3rem}; // Space between column and screen edges [60px]
+	}
+
+	// Colour switch
+	body{
+		--bodyColor:#{$black};
+		--backgroundColor:#{$white};
+		--highlightColor:#{$green};
+
+		--filter_bodyColor:#{$filter_black};
+		--filter_backgroundColor:#{$filter_white};
+		--filter_highlightColor:#{$filter_green};
+
+		&.jsBgToggle{
+			--bodyColor:#{$white};
+			--backgroundColor:#{$black};
+			--highlightColor:#{$pink};
+
+			--filter_bodyColor:#{$filter_white};
+			--filter_backgroundColor:#{$filter_black};
+			--filter_highlightColor:#{$filter_pink};
+		}
+
+		&.bgBlack{
+			--bodyColor:#{$white};
+			--backgroundColor:#{$black};
+			--highlightColor:#{$pink};
+
+			--filter_bodyColor:#{$filter_white};
+			--filter_backgroundColor:#{$filter_black};
+			--filter_highlightColor:#{$filter_pink};
+
+			&.jsBgToggle{
+				--bodyColor:#{$black};
+				--backgroundColor:#{$white};
+				--highlightColor:#{$green};
+
+				--filter_bodyColor:#{$filter_black};
+				--filter_backgroundColor:#{$filter_white};
+				--filter_highlightColor:#{$filter_green};
+			}
+		}
+	}
+}

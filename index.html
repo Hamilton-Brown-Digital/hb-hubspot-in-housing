@@ -1,75 +1,533 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en-GB" class="no-js allowScrollDesktop allowScrollMobile">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HB Creative | In-Housing</title>
-  <meta name="description" content="">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>In-House Creative Teams | Your Team. Our Agency. | HB</title>
+	<meta name="description" content="Dedicated in-house creative teams, flexible capacity and specialist expertise from HB. No subscriptions, just talented people working alongside yours.">
+	<meta name="theme-color" content="#1EFE00">
+	<link rel="icon" type="image/svg+xml" href="assets/dist/img/favicon.svg">
+	<script>document.documentElement.className=document.documentElement.className.replace(/\bno-js\b/,'js');</script>
 
-  <!-- build:css -->
-  <link rel="stylesheet" href="assets/dist/css/main.css">
-  <!-- endbuild -->
+	<link rel="preload" href="assets/dist/fonts/GT-America-Standard-Regular.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="assets/dist/fonts/GT-America-Standard-Medium.woff2" as="font" type="font/woff2" crossorigin>
+
+	<!-- build:css -->
+	<link rel="stylesheet" href="assets/dist/css/main.css">
+	<!-- endbuild -->
 </head>
-<body>
-<div class="hb-lp">
+<body class="lp-inhousing">
 
-  <!-- ========== HEADER ========== -->
-  <header class="hb-header">
-    <div class="hb-container hb-header__inner">
-      <a class="hb-header__logo" href="https://www.uk-hb.com/">
-        <img src="assets/dist/images/logo.svg" alt="HB Creative" width="140" height="40">
-      </a>
-      <a class="hb-btn hb-btn--primary hb-js-scroll" href="#hb-form">Get in touch</a>
-    </div>
-  </header>
+	<div class="anchor" id="top"></div>
+	<div class="maingrid" id="mainGrid">
 
-  <!-- ========== HERO ========== -->
-  <section class="hb-hero">
-    <div class="hb-container">
-      <h1 class="hb-hero__title">Headline goes here</h1>
-      <p class="hb-hero__intro">Supporting copy from the design.</p>
-      <a class="hb-btn hb-btn--primary hb-js-scroll" href="#hb-form">Primary CTA</a>
-    </div>
-  </section>
+		<!-- ========== HEADER ========== -->
+		<header class="mainheader lp-header" id="mainHeader">
+			<div class="lp-header__grid">
+				<a href="https://uk-hb.com/" title="HB" class="lp-header__logo">
+					<svg role="img" aria-labelledby="logoHeader" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 67.1"><title id="logoHeader">HB</title><path d="M85.6,32.4c5.3-2.3,10.6-6.8,10.6-15.5v-.2c0-4.3-1.5-7.9-4.3-10.7-3.8-3.7-9.9-5.9-17.5-5.9h-28.1v67.1h29.3c14.7,0,24.4-6.8,24.4-18.3v-.2c0-9.2-6.4-13.8-14.4-16.2"/><rect x="0" y="0" width="38.9" height="29.9"/><rect y="37.2" width="38.9" height="29.9"/></svg>
+				</a>
+				<nav class="lp-header__nav" aria-label="Page">
+					<div class="lp-jump">
+						<button class="lp-pill lp-pill--outline lp-jump__toggle" type="button" aria-expanded="false" aria-controls="lpJumpMenu">
+							<span class="lp-pill__label"><span class="lp-pill__long">Jump to section</span><span class="lp-pill__short">Menu</span></span>
+							<span class="lp-pill__icon lp-pill__icon--plus" aria-hidden="true"><svg viewBox="0 0 47 47"><path class="lp-pill__plus-h" d="M14.5 23.5h18"/><path class="lp-pill__plus-v" d="M23.5 14.5v18"/></svg></span>
+						</button>
+						<ul class="lp-jump__menu" id="lpJumpMenu" hidden>
+							<li><a href="#about">About HB</a></li>
+							<li><a href="#who-its-for">Who it&rsquo;s for</a></li>
+							<li><a href="#the-hb-difference">The HB difference</a></li>
+							<li><a href="#how-we-work">How we work</a></li>
+							<li><a href="#our-work">Our work</a></li>
+							<li><a href="#our-people">Our people and studios</a></li>
+							<li><a href="#questions">Questions</a></li>
+						</ul>
+					</div>
+					<a class="lp-pill lp-pill--solid" href="#contact">
+						<span class="lp-pill__label">Contact</span>
+						<span class="lp-pill__icon lp-pill__icon--arrow" aria-hidden="true"><svg viewBox="0 0 47 47"><path d="m26.6 24.6h-10.1v-2h10.2l-3.3-3.3 1.4-1.4 5.7 5.7-5.7 5.7-1.4-1.4 3.2-3.2z"/></svg></span>
+					</a>
+				</nav>
+			</div>
+		</header>
 
-  <!-- ========== CONTENT SECTIONS (built from Figma) ========== -->
-  <section class="hb-section">
-    <div class="hb-container">
-      <h2>Section heading</h2>
-      <p>Section content.</p>
-    </div>
-  </section>
+		<main class="maincontent">
 
-  <!-- ========== FORM ========== -->
-  <section class="hb-section hb-form-section" id="hb-form">
-    <div class="hb-container hb-container--narrow">
-      <h2>Form heading</h2>
-      <!--
-        HubSpot form: fill in data-portal-id and data-form-id (and data-region if not "eu1"/"na1").
-        Find them in HubSpot > Marketing > Forms > [form] > Share > Embed code.
-      -->
-      <div class="hb-hsform"
-           data-region="eu1"
-           data-portal-id=""
-           data-form-id="">
-        <p class="hb-hsform__placeholder">HubSpot form loads here.</p>
-      </div>
-    </div>
-  </section>
+			<!-- ========== HERO ========== -->
+			<section class="lp-hero" id="hero">
+				<h1 class="lp-hero__title">
+					<span class="lp-visuallyhidden">In-housing: more capacity, more capability, more possibilities.</span>
+					<span class="lp-more" aria-hidden="true">
+						<img class="lp-more__inhousing" src="assets/dist/img/more/in-housing.svg" alt="" width="238" height="28">
+						<img class="lp-more__m" src="assets/dist/img/more/m.svg" alt="" width="238" height="232">
+						<img class="lp-more__paren lp-more__paren--left" src="assets/dist/img/more/paren-left.svg" alt="" width="87" height="300">
+						<span class="lp-more__image"><img src="assets/dist/img/hero.webp" alt="" width="546" height="293"></span>
+						<img class="lp-more__paren lp-more__paren--right" src="assets/dist/img/more/paren-right.svg" alt="" width="87" height="300">
+						<img class="lp-more__re" src="assets/dist/img/more/re.svg" alt="" width="365" height="232">
+						<img class="lp-more__tagline" src="assets/dist/img/more/tagline.svg" alt="" width="1188" height="51">
+					</span>
+				</h1>
+			</section>
 
-  <!-- ========== FOOTER ========== -->
-  <footer class="hb-footer">
-    <div class="hb-container">
-      <p>&copy; <span class="hb-js-year"></span> HB Creative</p>
-    </div>
-  </footer>
+			<div class="pagecontent">
 
-</div>
+				<!-- ========== MORE POSSIBILITIES ========== -->
+				<section class="content lp-possibilities">
+					<div class="lp-possibilities__images lp-possibilities__images--top" aria-hidden="true">
+						<div class="parallaximage parallaxImage lp-pimg lp-pimg--1" data-speed="1.3"><img src="assets/dist/img/mp-03.jpg" alt=""></div>
+						<div class="parallaximage parallaxImage lp-pimg lp-pimg--2" data-speed="1.8"><img src="assets/dist/img/mp-02.jpg" alt=""></div>
+						<div class="parallaximage parallaxImage lp-pimg lp-pimg--3" data-speed="0.6"><img src="assets/dist/img/mp-04.jpg" alt=""></div>
+						<div class="parallaximage parallaxImage lp-pimg lp-pimg--4" data-speed="0.6"><img src="assets/dist/img/mp-01.jpg" alt=""></div>
+					</div>
+					<div class="lp-split lp-possibilities__text">
+						<h2 class="lp-title lp-title--xl animateFadeIn">More possibilities for your <em>marketing team</em>.</h2>
+						<div class="lp-split__body lp-body animateFadeIn">
+							<p>Give your marketing team the creative capacity to achieve more, the specialist expertise to take on new challenges and the flexibility to adapt as your business changes.</p>
+							<p>No subscriptions. No unnecessary complexity. Just talented creative people working alongside yours, with the resources of an independent agency behind them.</p>
+							<p>Whether you need a dedicated in-house team, additional capacity for a busy period or specialist support for an ambitious project, HB brings the right people together, when and where you need them.</p>
+							<p><a href="#contact" class="btn btn--green btn--iconarrow">Let&rsquo;s talk</a></p>
+						</div>
+					</div>
+					<div class="lp-possibilities__images lp-possibilities__images--bottom" aria-hidden="true">
+						<div class="parallaximage parallaxImage lp-pimg lp-pimg--5" data-speed="0.8"><img src="assets/dist/img/mp-08.jpg" alt=""></div>
+						<div class="parallaximage parallaxImage lp-pimg lp-pimg--6" data-speed="2.0"><img src="assets/dist/img/mp-06.jpg" alt=""></div>
+						<div class="parallaximage parallaxImage lp-pimg lp-pimg--7" data-speed="0.6"><img src="assets/dist/img/mp-07.jpg" alt=""></div>
+						<div class="parallaximage parallaxImage lp-pimg lp-pimg--8" data-speed="0.7"><img src="assets/dist/img/mp-09.jpg" alt=""></div>
+						<div class="parallaximage parallaxImage lp-pimg lp-pimg--9" data-speed="1.9"><img src="assets/dist/img/mp-10.jpg" alt=""></div>
+						<div class="parallaximage parallaxImage lp-pimg lp-pimg--10" data-speed="1.4"><img src="assets/dist/img/mp-05.jpg" alt=""></div>
+					</div>
+				</section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://js.hsforms.net/forms/embed/v2.js" charset="utf-8"></script>
-<!-- build:js -->
-<script src="assets/dist/js/main.js"></script>
-<!-- endbuild -->
+				<!-- ========== ABOUT HB ========== -->
+				<section class="content lp-about">
+					<a class="anchor" id="about"></a>
+					<div class="animateFadeIn animateFadeIn--JustFade"><!-- Line, title, intro and footnote fade in together -->
+						<div class="section_header"><h2>About HB</h2></div>
+						<p class="lp-intro">For 27 years, HB has worked alongside ambitious organisations, helping their brands make an impact through thoughtful strategy, exceptional creativity and meticulous delivery<span class="lp-asterisk">*</span>. From long-term creative partnerships to complex international programmes, our teams understand the demands of working within large organisations, where quality, consistency and responsiveness matter.</p>
+						<p class="lp-footnote"><span class="lp-asterisk">*</span>Even a few we&rsquo;re not allowed to mention.</p>
+					</div>
+				</section>
+				<section class="content full_width lp-logos animateFadeIn animateFadeIn--JustFade" aria-label="Some of our clients">
+					<div class="lp-logos__row">
+						<ul class="lp-logos__track">
+							<li><img src="assets/dist/img/logos/allianz.png" alt="Allianz" width="140" height="60"></li>
+							<li><img src="assets/dist/img/logos/alvarez-marsal.png" alt="Alvarez &amp; Marsal" width="140" height="60"></li>
+							<li><img src="assets/dist/img/logos/bdo.png" alt="BDO" width="140" height="60"></li>
+							<li><img src="assets/dist/img/logos/cbre.png" alt="CBRE" width="140" height="60"></li>
+							<li><img src="assets/dist/img/logos/cavendish.png" alt="Cavendish Online" width="140" height="60"></li>
+							<li><img src="assets/dist/img/logos/charterhouse.png" alt="Charterhouse" width="140" height="60"></li>
+							<li><img src="assets/dist/img/logos/cinven.png" alt="Cinven" width="140" height="60"></li>
+							<li><img src="assets/dist/img/logos/clearwater.png" alt="Clearwater International" width="140" height="60"></li>
+							<li><img src="assets/dist/img/logos/close-brothers.png" alt="Close Brothers" width="140" height="60"></li>
+						</ul>
+					</div>
+					<div class="lp-logos__row lp-logos__row--reverse">
+						<ul class="lp-logos__track">
+							<li><img src="assets/dist/img/logos/cripps.png" alt="Cripps Pemberton Greenish" width="140" height="60"></li>
+							<li><img src="assets/dist/img/logos/cushman-wakefield.png" alt="Cushman &amp; Wakefield" width="140" height="60"></li>
+							<li><img src="assets/dist/img/logos/eci.png" alt="ECI" width="140" height="60"></li>
+							<li><img src="assets/dist/img/logos/euromoney.png" alt="Euromoney" width="140" height="60"></li>
+							<li><img src="assets/dist/img/logos/frp.png" alt="FRP" width="140" height="60"></li>
+							<li><img src="assets/dist/img/logos/factor.png" alt="Factor" width="140" height="60"></li>
+							<li><img src="assets/dist/img/logos/frontier.png" alt="Frontier Economics" width="140" height="60"></li>
+							<li><img src="assets/dist/img/logos/gordon-brothers.png" alt="Gordon Brothers" width="140" height="60"></li>
+							<li><img src="assets/dist/img/logos/grant-thornton.png" alt="Grant Thornton" width="140" height="60"></li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ========== WHO IT'S FOR ========== -->
+				<section class="content lp-sticklist lp-whoitsfor">
+					<a class="anchor" id="who-its-for"></a>
+					<div class="section_header animateFadeIn animateFadeIn--JustFade"><h2>Who it&rsquo;s for?</h2></div>
+					<div class="lp-sticklist__grid">
+						<div class="lp-sticklist__aside">
+							<p class="lp-title lp-stagger"><!-- Each line fades in one after another once the line above has appeared --><span>More capacity.</span><span>More capability.</span><span>More <em>possibilities</em>.</span></p>
+						</div>
+						<ol class="lp-numlist">
+							<li class="animateFadeIn" data-fade-with=".section_header">
+								<span class="lp-numlist__num">01</span>
+								<div>
+									<h3>Your marketing team has more to deliver than ever before.</h3>
+									<p>More campaigns, more channels, more markets and more demands from across your organisation. HB gives you the creative support to respond to those demands, without having to build every capability or accommodate every increase in workload within your permanent team.</p>
+								</div>
+							</li>
+							<li class="animateFadeIn">
+								<span class="lp-numlist__num">02</span>
+								<div>
+									<h3>Do more with the team you have.</h3>
+									<p>Give your marketing team additional creative capacity without continually increasing permanent headcount. From everyday design and production to complex campaigns, we help you accommodate changing workloads and take on more.</p>
+								</div>
+							</li>
+							<li class="animateFadeIn">
+								<span class="lp-numlist__num">03</span>
+								<div>
+									<h3>Bring bigger ideas to life.</h3>
+									<p>Access the breadth of creative, strategic and technical expertise needed to tackle more ambitious work. Your team can draw on the wider HB agency whenever a project calls for specialist skills or a different creative perspective.</p>
+								</div>
+							</li>
+							<li class="animateFadeIn">
+								<span class="lp-numlist__num">04</span>
+								<div>
+									<h3>Make your brand work harder, everywhere.</h3>
+									<p>Deliver consistent, high-quality creative across your organisation, with people who understand your brand, your audiences and the complexities of your business. From the smallest everyday detail to your most visible campaigns, every interaction matters.</p>
+								</div>
+							</li>
+							<li class="animateFadeIn">
+								<span class="lp-numlist__num">05</span>
+								<div>
+									<h3>Make more of your creative investment.</h3>
+									<p>Establish the right combination of dedicated resource, flexible capacity and specialist support. Bring greater clarity to your creative investment, reduce the burden of recruitment and management, and put the right expertise to work where it delivers the most value.</p>
+								</div>
+							</li>
+						</ol>
+					</div>
+				</section>
+
+				<!-- ========== DARK ZONE (whole page background flips to black, as on uk-hb.com) ========== -->
+				<div class="lp-zone">
+					<div class="lp-zone__trigger bgToggle" data-trigger="0.85" data-end="0.85" aria-hidden="true"></div><!-- Black as the CTA comes in (85% down the screen); white again as the Our people line fades in -->
+
+					<!-- CTA: WHAT COULD YOUR TEAM DO WITH M(LET'S TALK)RE? -->
+					<section class="content lp-cta animateFadeIn animateFadeIn--JustFade">
+						<h2 class="lp-cta__title">What could your team <br>do with M(<span class="lp-cta__button"><a href="#contact" class="btn btn--green btn--iconarrow">Let&rsquo;s talk</a></span>)RE?</h2><!-- M()RE fades in closed, then opens out to show the button -->
+					</section>
+
+					<!-- THE HB DIFFERENCE -->
+					<section class="content lp-split-section lp-difference">
+						<a class="anchor" id="the-hb-difference"></a>
+						<div class="section_header animateFadeIn animateFadeIn--JustFade"><h2>The HB difference</h2></div>
+						<div class="lp-split">
+							<h2 class="lp-title animateFadeIn animateFadeIn--JustFade lpFadeWithLine">A relationship, <br>not a <em>subscription</em>.</h2>
+							<div class="lp-split__body lp-body lp-body--small animateFadeIn">
+								<p>Creative requirements rarely arrive in convenient, predictable packages. Some weeks you need the familiarity and responsiveness of people who know your business inside out. At other times you need additional capacity, a particular specialist or an entire creative team to help deliver something extraordinary.</p>
+								<p>HB brings the right people and expertise together around your requirements, with flexible ways of working that adapt as your business changes.</p>
+								<p>No predetermined subscription packages or artificial limits on the kind of creative support you can access. We agree the right people, scope and commercial arrangement for your business, whether that means a dedicated team, support for a particular programme or access to specialist expertise when you need it.</p>
+								<p>You work directly with talented creative people who become part of your team, supported by an independent agency that can bring additional resources together whenever your requirements change.</p>
+							</div>
+							<!-- Images TBC: placeholders, replace assets/src/img/difference-1.jpg (tall) and difference-2.jpg (square) -->
+							<div class="lp-difference__images animateFadeIn" data-fade-with=".lp-split__body">
+								<figure class="lp-difference__image lp-difference__image--tall"><img src="assets/dist/img/difference-1.jpg" alt="" width="428" height="590"></figure>
+								<figure class="lp-difference__image lp-difference__image--square"><img src="assets/dist/img/difference-2.jpg" alt="" width="276" height="276"></figure>
+							</div>
+						</div>
+					</section>
+
+					<!-- HOW WE WORK -->
+					<section class="content lp-howwework">
+						<a class="anchor" id="how-we-work"></a>
+						<div class="section_header animateFadeIn animateFadeIn--JustFade"><h2>How we work</h2></div>
+						<div class="lp-howwework__intro">
+							<h2 class="lp-title animateFadeIn animateFadeIn--JustFade lpFadeWithLine">Built around <em>your business</em>.</h2>
+							<div class="lp-body lp-body--small animateFadeIn animateFadeIn--JustFade lpFadeWithLine">
+								<p>There is no single way to work with HB. We build the right team and operating model around your organisation, your existing people, your workload and your ambitions.</p>
+								<p>Whether you need a consistent creative presence within your business, additional capacity for a particular period or specialist expertise for a major project, we establish an arrangement that works for you.</p>
+							</div>
+						</div>
+						<ol class="lp-models">
+							<li class="lp-model animateFadeIn" data-fade-with=".lp-model:first-child">
+								<p class="lp-model__num"><span>Model</span> 01</p>
+								<h3 class="lp-model__title">Your team, in-house.</h3>
+								<div class="lp-body lp-body--small">
+									<p>Dedicated HB creatives working alongside your colleagues, immersed in your business, your culture and your brand.</p>
+									<p>Our people become part of your everyday marketing operation, building the understanding and relationships that make creative delivery more responsive, consistent and effective.</p>
+								</div>
+							</li>
+							<li class="lp-model animateFadeIn" data-fade-with=".lp-model:first-child">
+								<p class="lp-model__num"><span>Model</span> 02</p>
+								<h3 class="lp-model__title">Our studios, at your service.</h3>
+								<div class="lp-body lp-body--small">
+									<p>Access the capabilities of our London and Cape Town studios, bringing additional creative capacity, specialist skills and production expertise into your organisation whenever they are required.</p>
+									<p>Our teams work with yours to support everything from everyday creative requirements to complex, large-scale programmes.</p>
+								</div>
+							</li>
+							<li class="lp-model animateFadeIn" data-fade-with=".lp-model:first-child">
+								<p class="lp-model__num"><span>Model</span> 03</p>
+								<h3 class="lp-model__title">The best of both.</h3>
+								<div class="lp-body lp-body--small">
+									<p>Combine a dedicated in-house team with the resources of the wider HB agency.</p>
+									<p>Your embedded creatives provide continuity, brand knowledge and day-to-day support, while our studios bring additional people and expertise into the relationship as your requirements change.</p>
+								</div>
+							</li>
+						</ol>
+					</section>
+
+					<!-- OUR WORK -->
+					<section class="content lp-ourwork">
+						<a class="anchor" id="our-work"></a>
+						<div class="section_header animateFadeIn animateFadeIn--JustFade"><h2>Our work</h2></div>
+						<div class="lp-ourwork__intro">
+							<h2 class="lp-title animateFadeIn animateFadeIn--JustFade lpFadeWithLine">Everything your marketing team needs to <em>deliver</em>.</h2>
+							<p class="lp-body lp-body--small animateFadeIn animateFadeIn--JustFade lpFadeWithLine">From the everyday creative work that keeps your business moving to the ambitious projects that move it forward, HB brings together the skills, experience and creative judgement to support your marketing team wherever it needs us. Whatever your organisation needs to communicate, create or deliver, we can bring the right combination of talent and expertise together to make it happen.</p>
+						</div>
+						<ol class="lp-worklist">
+							<li class="lp-worklist__item is-open animateFadeIn">
+								<button class="lp-worklist__toggle" type="button" aria-expanded="true" data-tooltip="Open">
+									<span class="lp-worklist__num">01</span>
+									<span class="lp-worklist__title">Brand and design</span>
+								</button>
+								<div class="lp-worklist__panel">
+									<figure class="lp-worklist__image"><img src="assets/dist/img/work-brand.jpg" alt="Corinthia Global Management bus shelter campaign" width="427" height="280"></figure>
+									<p>Brand strategy, visual identity, brand guidelines, design systems, creative direction and the everyday application of your brand across your organisation.</p>
+								</div>
+							</li>
+							<li class="lp-worklist__item animateFadeIn">
+								<button class="lp-worklist__toggle" type="button" aria-expanded="false" data-tooltip="Open">
+									<span class="lp-worklist__num">02</span>
+									<span class="lp-worklist__title">Marketing and campaigns</span>
+								</button>
+								<div class="lp-worklist__panel">
+									<figure class="lp-worklist__image"><img src="assets/dist/img/work-marketing.webp" alt="Future-Ready Finance campaign artwork" width="427" height="280" loading="lazy"></figure>
+									<p>Campaign concepts, creative development, content, digital advertising, social media, email marketing and multichannel brand activation.</p>
+								</div>
+							</li>
+							<li class="lp-worklist__item animateFadeIn">
+								<button class="lp-worklist__toggle" type="button" aria-expanded="false" data-tooltip="Open">
+									<span class="lp-worklist__num">03</span>
+									<span class="lp-worklist__title">Presentations and communications</span>
+								</button>
+								<div class="lp-worklist__panel">
+									<figure class="lp-worklist__image"><img src="assets/dist/img/work-presentations.webp" alt="Microsoft Advertising presentation slides" width="427" height="280" loading="lazy"></figure>
+									<p>Corporate presentations, pitch materials, sales enablement, reports, internal communications and essential business documents.</p>
+								</div>
+							</li>
+							<li class="lp-worklist__item animateFadeIn">
+								<button class="lp-worklist__toggle" type="button" aria-expanded="false" data-tooltip="Open">
+									<span class="lp-worklist__num">04</span>
+									<span class="lp-worklist__title">Digital and motion</span>
+								</button>
+								<div class="lp-worklist__panel">
+									<figure class="lp-worklist__image"><video title="National Trust Magazine animation" preload="none" loop muted playsinline poster="assets/dist/media/work-digital-motion.webp" width="427" height="280"><source src="assets/dist/media/work-digital-motion.mp4" type="video/mp4"></video></figure>
+									<p>Websites, digital experiences, digital design, motion graphics, animation, video and interactive content.</p>
+								</div>
+							</li>
+							<li class="lp-worklist__item animateFadeIn">
+								<button class="lp-worklist__toggle" type="button" aria-expanded="false" data-tooltip="Open">
+									<span class="lp-worklist__num">05</span>
+									<span class="lp-worklist__title">Creative production</span>
+								</button>
+								<div class="lp-worklist__panel">
+									<figure class="lp-worklist__image"><img src="assets/dist/img/work-production.webp" alt="Collas Crill tote bag" width="427" height="280" loading="lazy"></figure>
+									<p>Artwork, campaign adaptation, template development, versioning, localisation and the ongoing production of high-quality creative assets across channels and markets.</p>
+								</div>
+							</li>
+							<li class="lp-worklist__item animateFadeIn">
+								<button class="lp-worklist__toggle" type="button" aria-expanded="false" data-tooltip="Open">
+									<span class="lp-worklist__num">06</span>
+									<span class="lp-worklist__title">Strategy and specialist expertise</span>
+								</button>
+								<div class="lp-worklist__panel">
+									<figure class="lp-worklist__image"><video title="Cavernoma animation" preload="none" loop muted playsinline poster="assets/dist/media/work-strategy.webp" width="427" height="280"><source src="assets/dist/media/work-strategy.mp4" type="video/mp4"></video></figure>
+									<p>Access to the wider HB agency for brand strategy, marketing thinking, creative direction, specialist digital projects and more ambitious creative programmes.</p>
+								</div>
+							</li>
+						</ol>
+						<div class="lp-ourwork__outro">
+							<p><a href="https://uk-hb.com/work/" target="_blank" rel="noopener" class="btn btn--green btn--iconarrow">More of our work</a></p>
+						</div>
+					</section>
+
+					<!-- TESTIMONIAL (BDO) -->
+					<section class="content lp-quote">
+						<div class="lp-quote__grid">
+							<blockquote class="lp-quote__text animateFadeIn">
+								<p>For over 15 years we have relied on the creativity and skill of HB. They are an integral and highly valued part of our team. I highly recommend!</p>
+								<footer><strong>Simon Read</strong> Head of Design and Media<br>BDO</footer>
+							</blockquote>
+							<figure class="lp-quote__media animateFadeIn" data-fade-with=".lp-quote__text">
+								<div class="inlinevideo inlinevideo--4_3 inlineVideo autoplayVideoInViewport" data-video-type="mp4">
+									<div class="player">
+										<video title="BDO" preload="none" loop muted playsinline poster="assets/dist/media/home_Testimonial-BDO.webp">
+											<source src="assets/dist/media/home_Testimonial-BDO.mp4" type="video/mp4">
+										</video>
+									</div>
+								</div>
+							</figure>
+						</div>
+					</section>
+				</div>
+
+				<!-- ========== OUR PEOPLE AND STUDIOS ========== -->
+				<section class="content lp-split-section">
+					<a class="anchor" id="our-people"></a>
+					<div class="section_header animateFadeIn animateFadeIn--JustFade"><h2>Our people and studios</h2></div>
+					<div class="lp-split">
+						<h2 class="lp-title animateFadeIn animateFadeIn--JustFade lpFadeWithLine">Real people. Real teams. <br>Ready when <em>you need them</em>.</h2>
+						<div class="lp-split__body lp-body lp-body--small animateFadeIn">
+							<p>Behind every HB in-house team sits the expertise and capacity of our wider agency.</p>
+							<p>Our London and Cape Town studios bring together talented creatives, designers, strategists, digital specialists and production teams, working collaboratively to support the businesses we partner with.</p>
+							<p>We can embed people directly within your organisation, support your team remotely or bring together resources across our studios to deliver more ambitious programmes.</p>
+							<p>However we work together, you have access to real people who understand your business and care about the quality of the work they deliver.</p>
+						</div>
+						<figure class="lp-split__image animateFadeIn" data-fade-with=".lp-split__body"><img src="assets/dist/img/people.jpg" alt="The HB team in the London studio" width="581" height="402"></figure>
+					</div>
+				</section>
+
+				<!-- ========== QUESTIONS ========== -->
+				<section class="content lp-sticklist lp-faq animateFadeIn animateFadeIn--JustFade">
+					<a class="anchor" id="questions"></a>
+					<div class="section_header"><h2>Questions</h2></div>
+					<div class="lp-sticklist__grid">
+						<div class="lp-sticklist__aside">
+							<h2 class="lp-title">A few things you <br>might <em>want to know</em>.</h2>
+						</div>
+						<ul class="lp-faqlist">
+							<li class="is-open animateFadeIn">
+								<button class="lp-faqlist__toggle" data-tooltip="Open" type="button" aria-expanded="true">Do we need to commit to a subscription?</button>
+								<div class="lp-faqlist__panel">
+									<p>No. We build the right working arrangement around your business, rather than asking you to select a predetermined subscription package. That might mean a dedicated in-house team, additional creative capacity for a particular period or specialist support for a specific project. We agree the scope, people and commercial terms together.</p>
+								</div>
+							</li>
+														<li class="animateFadeIn">
+								<button class="lp-faqlist__toggle" data-tooltip="Open" type="button" aria-expanded="false">Can HB work alongside our existing creative team?</button>
+								<div class="lp-faqlist__panel">
+									<p>Absolutely. Our creatives can become part of your existing marketing or creative operation, providing additional capacity and expertise while working within your established brand, processes and ways of working. The aim is to complement your existing team and help it achieve more.</p>
+								</div>
+							</li>
+							<li class="animateFadeIn">
+								<button class="lp-faqlist__toggle" data-tooltip="Open" type="button" aria-expanded="false">Can we access specialist expertise without building a permanent team?</button>
+								<div class="lp-faqlist__panel">
+									<p>Yes. Alongside our dedicated creative teams, you can draw on the capabilities of the wider HB agency, including brand strategy, marketing, design, digital, motion and creative production. We bring together the right combination of people and expertise around the work you need to deliver.</p>
+								</div>
+							</li>
+							<li class="animateFadeIn">
+								<button class="lp-faqlist__toggle" data-tooltip="Open" type="button" aria-expanded="false">Where will our HB team work?</button>
+								<div class="lp-faqlist__panel">
+									<p>We can provide creatives working within your organisation, support your team through our London and Cape Town studios or establish an arrangement that combines the two. The right model will depend on your requirements, existing resources and preferred ways of working.</p>
+								</div>
+							</li>
+							<li class="animateFadeIn">
+								<button class="lp-faqlist__toggle" data-tooltip="Open" type="button" aria-expanded="false">Can the size of our creative team change?</button>
+								<div class="lp-faqlist__panel">
+									<p>Yes. We can plan for changing workloads and bring additional capacity or specialist expertise into the relationship when required. The exact arrangements, availability and commercial terms are agreed with you as part of the working model.</p>
+								</div>
+							</li>
+							<li class="animateFadeIn">
+								<button class="lp-faqlist__toggle" data-tooltip="Open" type="button" aria-expanded="false">What happens when we first get in touch?</button>
+								<div class="lp-faqlist__panel">
+									<p>We start with a conversation about your business, your existing team and the creative challenges you are trying to address. From there, we can explore the people, capabilities and working arrangements that would provide the most useful support.</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ========== CONTACT (background flips to black) ========== -->
+				<div class="lp-zone">
+					<div class="lp-zone__trigger bgToggle" data-trigger="0.85" data-end="none" aria-hidden="true"></div><!-- Black as the Contact line fades in (85% down the screen), and stays black from here to the end -->
+					<section class="content lp-contact">
+						<a class="anchor" id="contact"></a>
+						<div class="section_header animateFadeIn animateFadeIn--JustFade"><h2>Contact</h2></div>
+						<div class="lp-contact__grid">
+							<div class="lp-contact__intro">
+								<h2 class="lp-title animateFadeIn animateFadeIn--JustFade lpFadeWithLine">What could your <br>team do with <em>more?</em></h2>
+								<div class="lp-body animateFadeIn">
+									<p>Tell us what you are trying to achieve, where your marketing team needs support and what you would like to do differently.</p>
+									<p>Whether you need a dedicated in-house team, additional capacity or access to specialist expertise, we would love to explore how HB could help.</p>
+								</div>
+							</div>
+							<!--
+								HubSpot form: fill in data-portal-id and data-form-id (HubSpot > Marketing > Forms > [form] > Share > Embed code).
+								Region is "eu1" for EU data centre accounts, "na1" for US.
+							-->
+							<div class="lp-contact__form animateFadeIn">
+								<h3 class="lp-contact__formtitle">Let&rsquo;s talk about your team.</h3>
+								<div class="hb-hsform" data-region="eu1" data-portal-id="149501769" data-form-id="784e67d8-c8c2-4173-8675-140c66cbf894">
+								<p class="hb-hsform__placeholder">Preview only: the live HubSpot form replaces this once the portal and form IDs are set.</p>
+								<!-- Static preview using HubSpot's markup/classes, so the styling can be checked before the form exists -->
+								<form class="hs-form" onsubmit="return false" aria-hidden="true">
+									<fieldset class="form-columns-2">
+										<div class="hs-form-field"><label>First name<span class="hs-form-required">*</span></label><div class="input"><input class="hs-input" type="text" tabindex="-1"></div></div>
+										<div class="hs-form-field"><label>Last name<span class="hs-form-required">*</span></label><div class="input"><input class="hs-input" type="text" tabindex="-1"></div></div>
+									</fieldset>
+									<div class="hs-form-field"><label>Work email<span class="hs-form-required">*</span></label><div class="input"><input class="hs-input" type="email" tabindex="-1"></div></div>
+									<fieldset class="form-columns-2">
+										<div class="hs-form-field"><label>Company<span class="hs-form-required">*</span></label><div class="input"><input class="hs-input" type="text" tabindex="-1"></div></div>
+										<div class="hs-form-field"><label>Job title</label><div class="input"><input class="hs-input" type="text" tabindex="-1"></div></div>
+									</fieldset>
+									<div class="hs-form-field"><label>What kind of support are you looking for?<span class="hs-form-required">*</span></label><div class="input"><select class="hs-input" tabindex="-1"><option value="">Select from list</option><option>A dedicated in-house creative team</option><option>Additional creative capacity</option><option>Specialist creative expertise</option><option>Support for a particular project or campaign</option><option>Not sure yet. Let&rsquo;s talk.</option></select></div></div>
+									<div class="hs-form-field"><label>Tell us a little about your requirements.</label><div class="input"><textarea class="hs-input" tabindex="-1"></textarea></div></div>
+									<div class="legal-consent-container"><ul class="inputs-list"><li><label class="hs-form-booleancheckbox-display"><input type="checkbox" tabindex="-1"><span>I would like to receive occasional marketing communications from HB. Optional. <a href="https://uk-hb.com/privacy-policy/" tabindex="-1">Privacy Notice</a>.</span></label></li></ul></div>
+									<div class="hs_submit"><input type="submit" class="hs-button" value="Submit" tabindex="-1"></div>
+								</form>
+							</div>
+							</div>
+						</div>
+					</section>
+				</div>
+
+			</div>
+		</main>
+
+		<!-- ========== FOOTER (theme footer) ========== -->
+		<footer class="mainfooter mainFooter">
+			<div class="grid">
+				<div class="logo">
+					<svg role="img" aria-labelledby="logoFooter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 67.1"><title id="logoFooter">HB</title><path d="M85.6,32.4c5.3-2.3,10.6-6.8,10.6-15.5v-.2c0-4.3-1.5-7.9-4.3-10.7-3.8-3.7-9.9-5.9-17.5-5.9h-28.1v67.1h29.3c14.7,0,24.4-6.8,24.4-18.3v-.2c0-9.2-6.4-13.8-14.4-16.2"/><rect x="0" y="0" width="38.9" height="29.9"/><rect y="37.2" width="38.9" height="29.9"/></svg>
+				</div>
+				<div class="getintouch">
+					<p>It starts with a conversation.<br><a href="mailto:hello@uk-hb.com" title="Get in touch with us">hello@uk-hb.com</a></p>
+				</div>
+				<div class="signup">
+					<p>Updates straight to your inbox.</p>
+					<p><a href="https://eepurl.com/gbZAof" title="Sign up to our newsletter" target="_blank" rel="noopener" class="btn btn--black btn--iconarrow">Sign up to our newsletter</a></p>
+				</div>
+				<nav class="navigation" aria-label="Footer">
+					<ul class="menu">
+						<li><a href="https://uk-hb.com/work/">Explore</a>
+							<ul class="sub-menu">
+								<li><a href="https://uk-hb.com/work/">Work</a></li>
+								<li><a href="https://uk-hb.com/about/">About</a></li>
+								<li><a href="https://uk-hb.com/what-we-do/">What we do</a></li>
+								<li><a href="https://uk-hb.com/contact/">Contact</a></li>
+								<li><a href="https://uk-hb.com/join-us/">Join us</a></li>
+							</ul>
+						</li>
+						<li><a href="https://uk-hb.com/what-we-do/">What we do</a>
+							<ul class="sub-menu">
+								<li><a href="https://uk-hb.com/what-we-do#brand-design">Brand design</a></li>
+								<li><a href="https://uk-hb.com/what-we-do#brand-growth">Brand growth</a></li>
+								<li><a href="https://uk-hb.com/what-we-do#digital">Digital</a></li>
+								<li><a href="https://uk-hb.com/what-we-do/hb-in-house/">In-house agencies</a></li>
+							</ul>
+						</li>
+						<li><a href="https://uk-hb.com/privacy-policy/">Because we have to</a>
+							<ul class="sub-menu">
+								<li><a href="https://uk-hb.com/privacy-policy/">Privacy policy</a></li>
+								<li><a href="https://uk-hb.com/terms-conditions/">Terms and conditions</a></li>
+								<li><a href="https://uk-hb.com/iso-certification/">ISO</a></li>
+								<li><a href="https://uk-hb.com/cookies/">Cookies</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+				<div class="socials">
+					<ul>
+						<li><a href="https://www.instagram.com/hb_ldn/" title="Follow us on Instagram" target="_blank" rel="noopener">Instagram</a></li>
+						<li><a href="https://www.linkedin.com/company/uk-hb/" title="Join us on LinkedIn" target="_blank" rel="noopener">LinkedIn</a></li>
+						<li><a href="#top" title="Scroll back to the top of the page">Back to top</a></li>
+					</ul>
+				</div>
+				<div class="copyright">
+					<p>&copy; HB <span class="lp-js-year">2026</span>. All rights reserved.</p>
+				</div>
+				<div class="slogan slogan--makeithappen" id="triggerFooterToggle">
+					<svg role="img" aria-labelledby="slogan_title" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 87.4"><title id="slogan_title">Make it happen</title><path d="M0,2.829h23.394l20.56,63.222c1.109,3.43,1.841,6.682,2.186,9.767h.251c.512-3.341,1.286-6.635,2.311-9.893L69.01,2.829h23.645v91.238h-15.425V27.629c0-3.854.178-7.195.512-10.024h-.512c-.167,1.203-.471,2.787-.899,4.758-.429,1.971-.899,3.639-1.412,5.009l-21.334,66.694h-14.902L16.962,27.373c-.512-1.286-.983-2.892-1.412-4.821-.429-1.924-.732-3.529-.899-4.816h-.512c.335,2.74.512,6.039.512,9.893v66.437H0V2.829ZM138.145,2.829h18.238l33.935,91.238h-17.098l-8.22-23.901h-35.472l-8.22,23.901h-17.088L138.145,2.829ZM160.629,57.444l-10.405-30.583c-1.37-4.115-2.322-7.409-2.834-9.898h-.251c-.69,3.174-1.59,6.473-2.698,9.898l-10.541,30.583h26.73,0ZM202.01,2.829h16.701v42.406L255.082,2.829h19.911l-32.764,36.753,35.075,54.484h-19.399l-27.242-42.536-11.953,13.621v28.915h-16.701V2.829h0ZM351.836,80.958v13.109h-60.267V2.829h59.368v13.109h-42.657v24.931h40.471v12.978h-40.471v27.111h43.556ZM395.654,33.925c4.549-.34,8.492-.915,11.828-1.731s6.808-2.379,10.405-4.69l1.161.899-2.573,11.566-6.421,30.709-1.035,4.371c-.167.601-.492,2.076-.962,4.434-.471,2.353-.701,4.131-.701,5.333,0,.769.125,1.349.387,1.731.251.387.68.58,1.276.58,1.548,0,3.367-1.736,5.469-5.203,2.092-3.472,3.963-8.377,5.584-14.714l1.161.256c-2.144,9.25-4.999,16.105-8.544,20.56-3.556,4.455-7.226,6.682-10.991,6.682-2.74,0-4.716-.774-5.909-2.311-1.203-1.542-1.799-3.859-1.799-6.944,0-3.252.596-7.493,1.799-12.722l5.783-27.111c.429-1.971.638-3.472.638-4.497,0-1.971-.533-3.362-1.6-4.178-1.077-.816-2.729-1.265-4.957-1.349v-1.673.002ZM409.092,15.357c-1.422-1.495-2.123-3.446-2.123-5.846,0-2.74.92-5.009,2.761-6.813C411.571.899,413.819,0,416.475,0,418.786,0,420.669.711,422.133,2.123c1.454,1.412,2.186,3.231,2.186,5.459,0,2.918-.878,5.312-2.635,7.2-1.757,1.882-4.047,2.824-6.881,2.824-2.395,0-4.298-.748-5.71-2.248h0ZM429.652,91.755c-2.018-2.4-3.022-5.741-3.022-10.024,0-2.227.251-4.627.774-7.2l8.481-40.476h-8.356l.251-1.799c5.49-.429,10.416-2.311,14.787-5.652,4.361-3.341,7.665-7.885,9.893-13.621h1.799l-3.346,15.932h19.409l-3.346,5.14h-17.349l-8.094,38.939c-.596,2.74-.899,5.265-.899,7.582,0,4.967,1.799,7.451,5.396,7.451,2.74,0,5.678-1.778,8.805-5.333,3.127-3.556,5.846-8.162,8.157-13.815l1.286.512c-2.562,7.456-6.254,13.647-11.043,18.573-4.8,4.926-9.642,7.388-14.526,7.388-4.026,0-7.048-1.203-9.056-3.597h-.001ZM575.044,94.066h-16.837v-39.708h-40.732v39.708h-16.701V2.829h16.701v38.04h40.732V2.829h16.837v91.238h0ZM620.66,2.829h18.249l33.925,91.238h-17.088l-8.22-23.901h-35.472l-8.22,23.901h-17.098L620.66,2.829ZM643.154,57.444l-10.416-30.583c-1.37-4.115-2.311-7.409-2.824-9.898h-.251c-.69,3.174-1.59,6.473-2.709,9.898l-10.531,30.583h26.731ZM684.525,94.066V2.829h36.236c6.431,0,12.037,1.135,16.837,3.404,4.8,2.275,8.502,5.506,11.116,9.705s3.922,9.082,3.922,14.646c0,8.654-2.876,15.53-8.617,20.628s-13.532,7.645-23.383,7.645h-19.409v35.211h-16.701v-.002ZM730.34,19.791c-3.137-2.74-7.394-4.11-12.79-4.11h-16.324v30.453h16.324c5.396,0,9.652-1.349,12.79-4.047,3.127-2.698,4.685-6.405,4.685-11.116s-1.558-8.434-4.685-11.179h0ZM766,94.066V2.829h36.236c6.431,0,12.037,1.135,16.837,3.404,4.8,2.275,8.502,5.506,11.116,9.705s3.922,9.082,3.922,14.646c0,8.654-2.876,15.53-8.617,20.628s-13.532,7.645-23.383,7.645h-19.409v35.211h-16.701v-.002ZM811.815,19.791c-3.137-2.74-7.394-4.11-12.79-4.11h-16.324v30.453h16.324c5.396,0,9.652-1.349,12.79-4.047,3.127-2.698,4.685-6.405,4.685-11.116s-1.558-8.434-4.685-11.179h0ZM907.732,80.958v13.109h-60.267V2.829h59.368v13.109h-42.667v24.931h40.481v12.978h-40.481v27.111h43.566ZM925.73,2.829h19.273l34.186,59.624c2.311,4.115,4.152,7.927,5.522,11.441h.261c-.178-2.316-.261-6.343-.261-12.084V2.829h15.289v91.238h-19.273l-34.176-59.624c-2.573-4.371-4.413-8.183-5.532-11.441h-.251c.167,4.627.251,8.659.251,12.084v58.981h-15.289V2.829h0Z"/></svg>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+
+	<!-- Libraries -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="assets/dist/js/vendor/ScrollMagic/lib/greensock/TweenMax.min.js"></script>
+	<script src="assets/dist/js/vendor/ScrollMagic/ScrollMagic.min.js"></script>
+	<script src="assets/dist/js/vendor/ScrollMagic/plugins/animation.gsap.min.js"></script>
+	<script src="https://js-eu1.hsforms.net/forms/embed/v2.js" charset="utf-8"></script>
+
+	<!-- build:js -->
+	<script src="assets/dist/js/main.js"></script>
+	<!-- endbuild -->
 </body>
 </html>

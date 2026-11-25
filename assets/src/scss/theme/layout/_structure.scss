@@ -1,0 +1,93 @@
+// Theme utilitis
+@use '../utility/utility' as *;
+@use '../utility/variables' as *;
+@use '../utility/dynamicvariables' as *;
+@use '../utility/mixins' as *;
+
+
+/* -- Structure
+--------------------------------- */
+
+.maingrid{
+    width:100vw;
+    min-width:320px;
+    height:auto;
+    min-height:100vh;
+
+    display:grid;
+    position:relative;
+    left:0%;
+    z-index:0;
+
+    grid-template-columns:minmax(0, 1fr);
+    grid-template-rows:auto -webkit-min-content;
+    grid-template-rows:auto min-content;
+
+    margin:0px auto;
+    padding:$headerSpacing 0px 0px 0px;
+    border:0px none;
+}
+
+
+    // Header
+    .mainheader{
+        width:100%;
+        min-width:320px;
+        height:auto;
+
+        position:fixed;
+        display:block;
+        top:0px;
+        left:0px;
+        z-index:30;
+
+        margin:0px auto;
+        padding:$verticalGutter $sideSpacing 0px;
+        border:0px none;
+    }
+
+
+    // Content
+    .maincontent{
+        grid-column:1;
+        grid-row:1;
+
+        background-color:transparent;
+
+        width:100%;
+        height:auto;
+        min-height:100px;
+
+        display:grid;
+        position:relative;
+        z-index:10;
+
+        margin:0px auto;
+        padding:0px;
+        border:0px none;
+
+        overflow:hidden;
+
+        grid-template-columns:minmax(0, 1fr);
+        grid-template-rows:auto;
+
+        overflow:visible;
+    }
+
+
+    // Footer
+    .mainfooter{
+        grid-column:1;
+        grid-row:2;
+
+        width:100%;
+        height:auto;
+
+        display:block;
+        position:relative;
+        z-index:10;
+
+        margin:0px auto;
+        padding:0px;
+        border:0px none;
+    }

@@ -1,0 +1,104 @@
+@use '../page' as *;
+
+// About HB: intro + footnote, then two rows of client logos scrolling in opposite directions
+
+.lp-about{
+	.lp-footnote{
+		margin:2.5rem 0px 0px;
+		font-size:1rem;
+		line-height:1.4;
+		letter-spacing:-0.03em;
+
+		@include responsive_from($md_screen){
+			margin-top:4.5rem;
+			font-size:1.2rem;
+		}
+	}
+}
+
+.lp-logos{
+	// Figma: 60px logo boxes in 86px rows, with 60px between each row and the divider line
+	// (so 73px from logo box to line on both sides)
+
+	&__row{
+		position:relative;
+		overflow:hidden;
+
+		// Divider between the rows
+		& + &{
+			margin-top:1.5rem;
+			padding-top:1.5rem;
+
+			@include responsive_from($md_screen){
+				margin-top:3rem;  // 60px
+				padding-top:3rem; // 60px
+			}
+
+			&::before{
+				background-color:$bodyColor;
+				height:0.05rem;
+				position:absolute;
+				top:0px;
+				left:$sideSpacing;
+				right:$sideSpacing;
+				content:'';
+			}
+		}
+	}
+
+	&__track{
+		display:flex;
+		align-items:center;
+		gap:4rem;
+		width:max-content;
+		list-style:none;
+		margin:0px;
+		padding:0.65rem 0px;
+
+		// JS duplicates the logos and adds .jsMarquee
+		&.jsMarquee{
+			animation:lpMarquee 60s linear infinite;
+		}
+
+		li{
+			flex:none;
+			margin:0px;
+			padding:0px;
+		}
+
+		img{
+			display:block;
+			width:7rem;
+			height:3rem;
+			object-fit:contain;
+			filter:$filter_bodyColor;
+		}
+	}
+
+	&__row--reverse &__track.jsMarquee{
+		animation-direction:reverse;
+	}
+
+	@include responsive_to($sm_screen){
+		&__track{
+			gap:2rem;
+
+			img{
+				width:5rem;
+				height:2.2rem;
+			}
+		}
+	}
+}
+
+@keyframes lpMarquee{
+	from{ transform:translateX(0); }
+	to{ transform:translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce){
+	.lp-logos__track.jsMarquee{
+		animation:none;
+	}
+}
+

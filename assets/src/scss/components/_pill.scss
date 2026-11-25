@@ -1,0 +1,133 @@
+@use '../page' as *;
+
+// Pill buttons with a separate round icon (header nav)
+
+// Same timing as the theme's html/body background change (base/_base.scss), so the header
+// buttons switch colour in step with the page when it flips to black and back
+$lpColourChange:calc(#{$transitionSpeed} * 2) $transitionEaseInOut;
+@mixin lpColourTransition($extra...){
+	transition:background-color $lpColourChange,
+				color $lpColourChange,
+				border-color $lpColourChange,
+				filter $lpColourChange,
+				$extra;
+}
+
+.lp-pill{
+	display:inline-flex;
+	align-items:center;
+	position:relative;
+
+	color:$bodyColor;
+	font-family:$fontfamilySansSerif;
+	font-size:0.8rem;
+	font-weight:$fontweightMedium;
+	line-height:1.1;
+	text-decoration:none;
+	text-transform:uppercase;
+	white-space:nowrap;
+
+	margin:0px;
+	padding:0px;
+	border:0px none;
+	background:none;
+	cursor:pointer;
+
+	&__label{
+		display:flex;
+		align-items:center;
+		height:2.1rem;
+		padding:0px 1.2rem;
+		border:0.05rem solid $bodyColor;
+		border-radius:2rem;
+		@include lpColourTransition(opacity 0ms);
+	}
+
+	&__icon{
+		flex:none;
+		width:2.35rem;
+		height:2.35rem;
+		position:relative;
+		border:0.05rem solid $bodyColor;
+		border-radius:50%;
+		@include lpColourTransition(opacity 0ms);
+
+		// Icons are inline SVGs drawn in currentColor, so they always change colour
+		// with the circle (same element, same transition)
+		display:flex;
+		align-items:center;
+		justify-content:center;
+
+		svg{
+			display:block;
+			width:100%;
+			height:100%;
+			overflow:visible;
+		}
+
+		// Plus → minus when the menu is open
+		&--plus path{
+			fill:none;
+			stroke:currentColor;
+			stroke-width:1.5;
+		}
+		&--plus .lp-pill__plus-v{
+			transform-origin:center;
+			transform-box:fill-box;
+			transition:transform $transitionSpeed $transitionEaseInOut;
+		}
+
+		// Arrow (theme icon-btnArrow.svg)
+		&--arrow path{
+			fill:currentColor;
+		}
+	}
+
+	// Short label for small screens ("Menu" instead of "Jump to section")
+	&__short{
+		display:none;
+	}
+	@include responsive_to($sm_screen){
+		&__long{ display:none; }
+		&__short{ display:inline; }
+	}
+
+	// Outline label, outline icon (filled with the page colour so content doesn't show through when scrolled)
+	&--outline{
+		.lp-pill__label,
+		.lp-pill__icon{
+			background-color:$backgroundColor;
+		}
+		.lp-pill__label{
+			min-width:16rem;
+		}
+		// Hover / open: label and plus circle invert together
+		&:hover,
+		&[aria-expanded="true"]{
+			.lp-pill__label,
+			.lp-pill__icon{
+				background-color:$bodyColor;
+				color:$backgroundColor;
+			}
+		}
+		&[aria-expanded="true"] .lp-pill__plus-v{
+			transform:rotate(90deg);
+		}
+	}
+
+	// Solid label, solid icon
+	&--solid{
+		.lp-pill__label,
+		.lp-pill__icon{
+			background-color:$bodyColor;
+			color:$backgroundColor;
+		}
+		&:hover{
+			.lp-pill__label,
+			.lp-pill__icon{
+				background-color:$backgroundColor;
+				color:$bodyColor;
+			}
+		}
+	}
+}

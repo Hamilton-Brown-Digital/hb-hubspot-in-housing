@@ -1,0 +1,227 @@
+@use '../page' as *;
+
+// HubSpot form (v2 embed, rendered with css:'' so HubSpot's own styles are off).
+// Matches the Figma "Form container": mono labels, white fields, pink submit.
+// Field colours use $bodyColor so it works on both the black and white backgrounds.
+
+.hb-hsform{
+
+	// Shown until the portal + form IDs are set
+	&__placeholder{
+		margin:0px 0px 1.5rem;
+		padding:0.6rem 0.8rem;
+		border:0.05rem dashed $bodyColor;
+		font-size:0.7rem;
+		opacity:0.6;
+	}
+
+	form{
+		display:grid;
+		row-gap:1.2rem;
+		margin:0px;
+	}
+
+	fieldset{
+		max-width:none !important;
+		margin:0px;
+		padding:0px;
+		border:0px none;
+
+		&.form-columns-2{
+			display:grid;
+			grid-template-columns:minmax(0, 1fr);
+			gap:1.2rem;
+
+			@include responsive_from($xs_screen){
+				grid-template-columns:repeat(2, minmax(0, 1fr));
+			}
+
+			.hs-form-field{
+				width:auto !important;
+				float:none !important;
+			}
+			.input{
+				margin-right:0px !important;
+			}
+		}
+	}
+
+	.hs-form-field{
+		display:grid;
+		row-gap:0.6rem;
+
+		& > label{
+			font-family:$fontfamilyMono;
+			font-size:0.8rem;
+			line-height:1.2;
+			text-transform:uppercase;
+		}
+	}
+
+	.hs-form-required{
+		color:$pink;
+	}
+
+	.hs-field-desc{
+		font-size:0.7rem;
+		opacity:0.7;
+	}
+
+	// Fields
+	.hs-input:not([type=checkbox]):not([type=radio]){
+		background-color:$white;
+		width:100% !important;
+		height:1.75rem;
+
+		color:$black;
+		font-family:$fontfamilySansSerif;
+		font-size:0.7rem;
+		line-height:1.2;
+
+		margin:0px;
+		padding:0px 0.5rem;
+		border:0.05rem solid $bodyColor; // Invisible on black, an outline if the page is still white
+		border-radius:0px;
+		outline:0px none;
+
+		-webkit-appearance:none;
+		appearance:none;
+
+		&::placeholder{
+			color:$darkgrey;
+		}
+		&:focus{
+			border-color:$pink;
+			box-shadow:0px 0px 0px 0.05rem $pink;
+		}
+		&.invalid.error{
+			border-color:$formerror;
+		}
+	}
+
+	select.hs-input{
+		background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E"); // Chevron from the Figma
+		background-position:right 0.5rem center;
+		background-repeat:no-repeat;
+		background-size:0.6rem auto;
+		padding-right:1.75rem;
+		color:$darkgrey;
+		cursor:pointer;
+
+		&:has(option:checked:not([value=""])){
+			color:$black;
+		}
+	}
+
+	textarea.hs-input{
+		height:5rem !important;
+		padding:0.4rem 0.5rem;
+		resize:vertical;
+	}
+
+	// Checkboxes / consent
+	.inputs-list{
+		display:grid;
+		gap:0.4rem;
+		list-style:none;
+		margin:0px;
+		padding:0px;
+	}
+
+	.hs-form-booleancheckbox-display,
+	.hs-form-checkbox-display,
+	.hs-form-radio-display{
+		display:flex;
+		align-items:flex-start;
+		gap:0.6rem;
+		font-size:0.7rem;
+		line-height:1.2;
+		cursor:pointer;
+
+		input{
+			flex:none;
+			background-color:$white;
+			width:0.8rem;
+			height:0.8rem;
+			margin:0px;
+			border:0.05rem solid $bodyColor;
+			border-radius:0px;
+			-webkit-appearance:none;
+			appearance:none;
+			cursor:pointer;
+
+			&:checked{
+				background:$pink url('../img/icon-btnCross.svg') center / 0.6rem no-repeat;
+				border-color:$pink;
+			}
+		}
+		span{
+			padding-top:0.15rem;
+		}
+	}
+
+	.legal-consent-container{
+		font-size:0.7rem;
+		line-height:1.2;
+
+		p{
+			margin:0px 0px 0.5rem;
+		}
+		a{
+			color:inherit;
+			text-decoration:underline;
+		}
+	}
+
+	// Errors
+	.hs-error-msgs{
+		list-style:none;
+		margin:0.3rem 0px 0px;
+		padding:0px;
+
+		label{
+			color:$pink;
+			font-size:0.7rem;
+		}
+	}
+	.hs_error_rollup{
+		display:none;
+	}
+
+	// Submit
+	.hs_submit{
+		margin-top:0.4rem;
+	}
+	.hs-button{
+		background-color:$pink;
+
+		color:$white;
+		font-family:$fontfamilySansSerif;
+		font-size:0.8rem;
+		font-weight:$fontweightMedium;
+		line-height:1.1;
+		text-transform:uppercase;
+
+		margin:0px;
+		padding:0.5rem 1rem;
+		border:0.05rem solid $pink;
+		border-radius:1.9rem;
+		cursor:pointer;
+
+		-webkit-appearance:none;
+		appearance:none;
+
+		transition:background-color $transitionSpeed $transitionEaseInOut,
+					color $transitionSpeed $transitionEaseInOut;
+
+		&:hover{
+			background-color:$backgroundColor;
+			color:$pink;
+		}
+	}
+
+	// Thank you message
+	.submitted-message{
+		@include fontBodyLarge;
+	}
+}

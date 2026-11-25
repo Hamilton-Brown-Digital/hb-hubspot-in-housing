@@ -1,0 +1,670 @@
+
+@use './utility' as *;
+@use './variables' as *;
+@use './dynamicvariables' as *;
+
+/* = Mixins
+ * -----------------------------------------------
+ *  - CSS Grid
+ *  - Spacing
+ *  - Specific @mixin functions
+ * ----------------------------------------------- */
+
+
+// -- CSS Grid
+// --------------------------------
+
+    @mixin gridColumns($numberOfColumns:''){
+        display:grid;
+
+        // Rows
+        grid-template-rows:auto;
+        row-gap:0px;
+
+        // Columns
+        @if $numberOfColumns != '' {
+            grid-template-columns:repeat($numberOfColumns, minmax(0, 1fr));
+        }
+        @else {
+            grid-template-columns:repeat(24, minmax(0, 1fr));
+        }
+
+        @include responsive_to($sm_screen){
+			-moz-column-gap:calc($verticalGutter / 2);
+				column-gap:calc($verticalGutter / 2);
+		}
+        @include responsive_from($sm_screen){
+            -moz-column-gap:$verticalGutter;
+                column-gap:$verticalGutter;
+        }
+        @if( $numberOfColumns >= 4){
+            @include responsive_to($xs_screen){
+                -moz-column-gap:0px;
+                    column-gap:0px;
+            }
+        }
+    }
+
+
+// -- Spacing @mixin functions
+// --------------------------------
+
+    // Add section space
+    @mixin addSectionSpace($cssProperty){
+        @include responsive_to($md_screen){
+        	#{$cssProperty}:2.5rem;
+		}
+        @include responsive_from($md_screen){
+            #{$cssProperty}:3.75rem;
+        }
+    }
+    @mixin addSectionSpaceLarge($cssProperty){
+        @include responsive_to($xs_screen){
+        	#{$cssProperty}:2rem;
+		}
+        @include responsive_from($xs_screen){
+            #{$cssProperty}:4rem;
+        }
+        @include responsive_from($md_screen){
+            #{$cssProperty}:6rem;
+        }
+    }
+
+    // Remove section space
+    @mixin removeSectionSpace($cssProperty){
+        @include responsive_to($md_screen){
+        	#{$cssProperty}:-2.5rem;
+		}
+        @include responsive_from($md_screen){
+            #{$cssProperty}:-3.75rem;
+        }
+    }
+
+    // Blank space for sizing (%)
+    @mixin blankSpace($percentage:''){
+        width:100%;
+        height:0px;
+
+        display:block;
+        position:relative;
+
+        margin:0px;
+        padding:0px 0px 56.25%;
+        border:0px none;
+        content:'';
+
+        @if $percentage != '' {
+            padding:0px 0px $percentage;
+        }
+    }
+
+
+// -- Utility @mixin functions
+// --------------------------------
+
+    @mixin underline{
+        text-decoration:underline;
+        text-decoration-color:inherit;
+        text-decoration-style:solid;
+        text-decoration-thickness:0.05rem;
+        text-underline-offset:0.2em;
+    }
+
+	@mixin dynamicUnderline{
+		&:not(.btn){
+			background-color:transparent;
+
+			width:auto;
+			height:auto;
+
+			display:inline-block;
+			vertical-align:top;
+			position:relative;
+			z-index:0;
+
+			font-weight:$fontweightMedium;
+			text-decoration:none;
+
+			overflow:hidden;
+			opacity:1.0;
+			cursor:pointer;
+
+			&::before{
+				background-color:$bodyColor;
+
+				width:100%;
+				height:0.05em;
+
+				display:block;
+				position:absolute;
+				bottom:0.1em;
+				left:0px;
+				z-index:-1;
+
+				border-radius:1px;
+
+				transform:translateX(0%);
+
+				transition:	background-color $transitionSpeed $transitionEaseInOut,
+							color $transitionSpeed 0ms,
+							transform $transitionSpeed $transitionEaseInOut;
+
+				transition-delay:$transitionSpeed;
+
+				content:'';
+			}
+
+			&::after{
+				background-color:$highlightColor;
+
+				width:100%;
+				height:0.4em;
+
+				display:block;
+				position:absolute;
+				bottom:0.4em;
+				left:0px;
+				z-index:-1;
+
+				margin-top:-0.05em;
+				border-radius:1px;
+
+				transform:translateX(-110%);
+
+				transition:	background-color $transitionSpeed $transitionEaseInOut,
+							color $transitionSpeed 0ms,
+							transform $transitionSpeed $transitionEaseInOut;
+
+				transition-delay:$transitionSpeed;
+
+				content:'';
+			}
+
+			&:hover{
+				opacity:1.0;
+				text-decoration:none;
+
+				&::before{
+					transform:translateX(110%);
+					transition-delay:0ms;
+				}
+				&::after{
+					transform:translateX(-0%);
+					transition-delay:$transitionSpeed;
+				}
+			}
+		}
+	}
+
+	@mixin hidden{
+		// Ref: https://css-tricks.com/places-its-tempting-to-use-display-none-but-dont/
+		position:absolute;
+		overflow:hidden;
+		clip:rect(0 0 0 0);
+		height:1px; width: 1px;
+		margin:-1px; padding: 0; border: 0;
+	}
+
+
+// -- Font @mixin styling
+// --------------------------------
+
+	@mixin fontHomepageTitle{
+		font-family:$fontfamilyGTAmerica;
+		font-size:2.6rem;
+		line-height:1.1;
+		font-weight:$fontweightMedium;
+		letter-spacing:-0.025em;
+
+		@include responsive_from($xxs_screen){
+			font-size:3.0rem;
+			line-height:1.1;
+		}
+		@include responsive_from($xs_screen){
+			font-size:4.0rem;
+			line-height:1.0;
+		}
+		@include responsive_from($sm_screen){
+			font-size:4.8rem;
+			line-height:0.95;
+		}
+		@include responsive_from($md_screen){
+			font-size:6.0rem;
+			line-height:0.95;
+		}
+		@include responsive_from($lg_screen){
+			font-size:7.2rem;
+			line-height:0.95;
+		}
+		@include responsive_from($xl_screen){
+			font-size:8.2rem;
+			line-height:0.95;
+		}
+
+		em{
+			font-family:$fontfamilyPangaia;
+			letter-spacing:0px;
+		}
+	}
+	@mixin fontPageTitle{
+		font-family:$fontfamilyGTAmerica;
+		font-size:2.0rem;
+		line-height:1.15;
+		font-weight:$fontweightMedium;
+		letter-spacing:-0.025em;
+		text-transform:uppercase;
+
+		@include responsive_from($xs_screen){
+			font-size:2.6rem;
+			line-height:1.1;
+		}
+		@include responsive_from($sm_screen){
+			font-size:3.2rem;
+			line-height:1.1;
+		}
+		@include responsive_from($md_screen){
+			font-size:4.0rem;
+			line-height:1.0;
+		}
+		@include responsive_from($lg_screen){
+			font-size:4.8rem;
+			line-height:0.95;
+		}
+		@include responsive_from($xl_screen){
+			font-size:6.0rem;
+			line-height:0.95;
+		}
+
+		em{
+			font-family:$fontfamilyPangaia;
+			letter-spacing:0px;
+		}
+	}
+
+	// Titles
+	@mixin fontSectionTitle{
+		font-family:$fontfamilyGTAmerica;
+		font-size:2.0rem;
+		line-height:1.1;
+		font-weight:$fontweightMedium;
+		letter-spacing:-0.025em;
+
+		@include responsive_from($xs_screen){
+			font-size:2.4rem;
+			line-height:1.1;
+		}
+		@include responsive_from($sm_screen){
+			font-size:2.8rem;
+			line-height:1.1;
+		}
+		@include responsive_from($md_screen){
+			font-size:3.2rem;
+			line-height:1.1;
+		}
+		@include responsive_from($lg_screen){
+			font-size:3.8rem;
+			line-height:1.0;
+		}
+		@include responsive_from($xl_screen){
+			font-size:4.8rem;
+			line-height:0.95;
+		}
+
+		em{
+			font-family:$fontfamilyPangaia;
+			letter-spacing:0px;
+		}
+	}
+	@mixin fontSectionSubTitleLarge{
+		font-family:$fontfamilyGTAmerica;
+		font-size:1.6rem;
+		line-height:1.15;
+		font-weight:$fontweightMedium;
+		letter-spacing:-0.025em;
+
+		@include responsive_from($xs_screen){
+			font-size:2.0rem;
+			line-height:1.1;
+		}
+		@include responsive_from($sm_screen){
+			font-size:2.4rem;
+			line-height:1.1;
+		}
+		@include responsive_from($md_screen){
+			font-size:2.8rem;
+			line-height:1.1;
+		}
+		@include responsive_from($lg_screen){
+			font-size:3.2rem;
+			line-height:1.1;
+		}
+		@include responsive_from($xl_screen){
+			font-size:3.2rem;
+			line-height:1.1;
+		}
+
+		em{
+			font-family:$fontfamilyPangaia;
+			letter-spacing:0px;
+		}
+	}
+	@mixin fontSectionSubTitleSmall{
+		font-family:$fontfamilyGTAmerica;
+		font-size:1.2rem;
+		line-height:1.15;
+		font-weight:$fontweightMedium;
+		letter-spacing:-0.025em;
+
+		@include responsive_from($xs_screen){
+			font-size:1.2rem;
+			line-height:1.15;
+		}
+		@include responsive_from($sm_screen){
+			font-size:1.4rem;
+			line-height:1.15;
+		}
+		@include responsive_from($md_screen){
+			font-size:1.4rem;
+			line-height:1.15;
+		}
+		@include responsive_from($lg_screen){
+			font-size:1.6rem;
+			line-height:1.1;
+		}
+		@include responsive_from($xl_screen){
+			font-size:1.6rem;
+			line-height:1.1;
+		}
+
+		em{
+			font-family:$fontfamilyPangaia;
+			letter-spacing:0px;
+		}
+	}
+
+	// Body
+	@mixin fontBody{
+		font-family:$fontfamilyGTAmerica;
+		font-weight:$fontweightRegular;
+		font-size:1.0rem;
+		line-height:1.5;
+	}
+	@mixin fontBodyXXXLarge{
+		font-family:$fontfamilyGTAmerica;
+		font-weight:$fontweightRegular;
+		font-size:1.2rem;
+		line-height:1.4;
+		letter-spacing:-0.025em;
+
+		@include responsive_to($sm_screen){
+			font-weight:$fontweightMedium;
+		}
+		@include responsive_from($xs_screen){
+			font-size:1.4rem;
+			line-height:1.2;
+		}
+		@include responsive_from($sm_screen){
+			font-size:2.0rem;
+			line-height:1.2;
+		}
+		@include responsive_from($md_screen){
+			font-size:2.2rem;
+			line-height:1.1;
+		}
+		@include responsive_from($lg_screen){
+			font-size:2.4rem;
+			line-height:1.1;
+		}
+		@include responsive_from($xl_screen){
+			font-size:3.2rem;
+			line-height:1.1;
+		}
+
+		em{
+			font-family:$fontfamilyPangaia;
+			letter-spacing:0px;
+		}
+	}
+	@mixin fontBodyXXLarge{
+		font-family:$fontfamilyGTAmerica;
+		font-weight:$fontweightRegular;
+		font-size:1.2rem;
+		line-height:1.4;
+		letter-spacing:-0.025em;
+
+		@include responsive_to($sm_screen){
+			font-weight:$fontweightMedium;
+		}
+		@include responsive_from($xs_screen){
+			font-size:1.4rem;
+			line-height:1.2;
+		}
+		@include responsive_from($sm_screen){
+			font-size:2.0rem;
+			line-height:1.2;
+		}
+		@include responsive_from($md_screen){
+			font-size:2.2rem;
+			line-height:1.1;
+		}
+
+		em{
+			font-family:$fontfamilyPangaia;
+			letter-spacing:0px;
+		}
+	}
+	@mixin fontBodyXLarge{
+		font-family:$fontfamilyGTAmerica;
+		font-weight:$fontweightRegular;
+		font-size:1.2rem;
+		line-height:1.4;
+		letter-spacing:-0.025em;
+
+		@include responsive_to($sm_screen){
+			font-weight:$fontweightMedium;
+		}
+		@include responsive_from($xs_screen){
+			font-size:1.4rem;
+			line-height:1.2;
+		}
+
+		em{
+			font-family:$fontfamilyPangaia;
+			letter-spacing:0px;
+		}
+	}
+	@mixin fontBodyLarge{
+		font-family:$fontfamilyGTAmerica;
+		font-weight:$fontweightRegular;
+		font-size:1.2rem;
+		line-height:1.4;
+	}
+
+	// Extras
+	@mixin fontSectionMarker{
+		font-family:$fontfamilyGTAmericaMono;
+		font-weight:$fontweightRegular;
+		font-size:0.8rem;
+		line-height:1.1;
+		text-transform:uppercase;
+	}
+	@mixin fontEyebrow{
+		font-family:$fontfamilyGTAmerica;
+		font-weight:$fontweightBold;
+		font-size:0.8rem;
+		line-height:1.1;
+		text-transform:uppercase;
+	}
+
+
+// -- Specific @mixin functions
+// --------------------------------
+
+    // For use in the footer to create the size for the slogan text
+    @mixin footerSloganFontSize($fontSize){
+        @include responsive_to($tabletBreak){
+            font-size:calc($fontSize - 0.375em);
+        }
+        @include responsive_from($tabletBreak){
+            font-size:calc($fontSize - 0.75em);
+        }
+    }
+
+	// Styling for the .btn component
+	@mixin btn(){
+		background-color:$bodyColor;
+
+		width:auto;
+		height:auto;
+
+		display:inline-block;
+		vertical-align:top;
+		position:relative;
+
+		color:$backgroundColor;
+		font-size:0.8rem;
+		font-weight:$fontweightMedium;
+		line-height:0.9rem;
+		text-decoration:none;
+		text-transform:uppercase;
+
+		margin:0px;
+		padding:0.4rem 0.8rem;
+		border:0.1rem solid $bodyColor;
+
+		border-radius:1.9rem;
+
+		transition: background-color $transitionSpeed $transitionEaseInOut,
+					border-color $transitionSpeed $transitionEaseInOut,
+					color $transitionSpeed $transitionEaseInOut,
+					opacity $transitionSpeed $transitionEaseInOut;
+					// filter $transitionSpeed $transitionEaseInOut;
+
+		// Icons
+		&::before,
+		&::after{
+			background-size:100%;
+
+			width:1.9rem;
+			height:1.9rem;
+
+			display:block;
+			position:absolute;
+			top:50%;
+			left:100%;
+
+			margin:0px 0px 0px 0.1rem;
+			padding:0px;
+
+			border-radius:1.9em;
+
+			transform:translateY(-50%);
+			transition:inherit;
+		}
+		&::before{
+			background-color:transparent;
+			background-image:url('../img/icon-btnArrow.svg');
+			z-index:10;
+			filter:$filter_backgroundColor;
+		}
+		&::after{
+			background-color:$bodyColor;
+			z-index:0;
+			border:0.1rem solid $bodyColor;
+		}
+
+		// Hover
+		&:hover{
+			background-color:$backgroundColor;
+			color:$bodyColor;
+			border-color:$bodyColor;
+
+			&::before{
+				filter:$filter_bodyColor;
+			}
+			&::after{
+				background-color:$backgroundColor;
+				border-color:$bodyColor;
+			}
+		}
+	}
+
+    // Styling for the chips component
+	@mixin chips{
+		background-color:$transparent;
+
+		width:auto;
+		height:auto;
+
+		display:inline-block;
+		vertical-align:top;
+		position:relative;
+
+		color:$bodyColor;
+		font-size:0.8rem;
+		font-weight:$fontweightMedium;
+		line-height:0.9rem;
+		text-decoration:none;
+		text-transform:uppercase;
+
+		margin:0px;
+		padding:0.5em 1em;
+		border:0.1rem solid $bodyColor;
+
+		border-radius:1.9rem;
+
+		transition: background-color $transitionSpeed $transitionEaseInOut,
+					border-color $transitionSpeed $transitionEaseInOut,
+					color $transitionSpeed $transitionEaseInOut,
+					opacity $transitionSpeed $transitionEaseInOut;
+					// filter $transitionSpeed $transitionEaseInOut;
+	}
+
+	// Scrolled footer colour
+	@mixin footerScrolledColour{
+		background-color:$green;
+		color:$black;
+		background-color:$black;
+		color:$white;
+
+		.grid{
+			.logo{
+				svg{
+					fill:$white;
+				}
+			}
+			.signup{
+				.btn{
+					background-color:$green;
+					color:$black;
+					border-color:$green;
+
+					&::before{
+						filter:$filter_black;
+					}
+					&::after{
+						background-color:$green;
+						border-color:$green;
+					}
+
+					&:hover{
+						background-color:$white;
+						color:$black;
+						border-color:$white;
+
+						&::before{
+							filter:$filter_black;
+						}
+						&::after{
+							background-color:$white;
+							border-color:$white;
+						}
+					}
+				}
+
+			}
+			&::before{
+				opacity:1;
+			}
+		}
+	}

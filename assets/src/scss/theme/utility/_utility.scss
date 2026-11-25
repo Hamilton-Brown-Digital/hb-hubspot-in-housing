@@ -1,0 +1,26 @@
+/* = Utility Functions
+ * -----------------------------------------------
+ *	- Media Queries
+ * ----------------------------------------------- */
+
+
+// -- Media Queries
+// --------------------------------
+
+    @mixin responsive_to($breakpoint) {
+        @media only screen and (max-width:calc($breakpoint - 1px)) {
+            @content;
+        }
+    }
+
+    @mixin responsive_from($minbreakpoint:'', $maxbreakpoint:'') {
+        @if ($maxbreakpoint == ''){
+            @media only screen and (min-width: $minbreakpoint) {
+                @content;
+            }
+        } @else{
+            @media only screen and (min-width: $minbreakpoint) and (max-width:calc($maxbreakpoint - 1px)) {
+                @content;
+            }
+        }
+    }

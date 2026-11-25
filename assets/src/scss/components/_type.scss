@@ -1,0 +1,146 @@
+@use '../page' as *;
+
+// Type styles used across the page (sizes from Figma at 1920px; 1rem = 20px)
+
+.lp-inhousing{
+
+	// Section spacing (150px between sections in the design)
+	.pagecontent{
+		@include lpSectionGap(row-gap);
+	}
+
+	// Eyebrow divider: theme .section_header, plus the gap before the content (104px from the line)
+	.section_header{
+		margin-bottom:2.5rem;
+
+		@include responsive_from($md_screen){
+			margin-bottom:3rem;
+		}
+	}
+
+	// 64px titles
+	.lp-title{
+		margin:0px;
+		@include fontSectionSubTitleLarge;
+		letter-spacing:-0.03em;
+
+		// 96px
+		&--xl{
+			@include fontSectionTitle;
+			letter-spacing:-0.03em;
+			line-height:1.1;
+		}
+	}
+
+	// 52px intro statements
+	.lp-intro{
+		max-width:76.25rem;
+		margin:0px;
+		font-size:1.4rem;
+		line-height:1.15;
+		letter-spacing:-0.03em;
+
+		@include responsive_from($sm_screen){
+			font-size:2rem;
+		}
+		@include responsive_from($lg_screen){
+			font-size:2.6rem;
+			line-height:1.115;
+		}
+	}
+
+	// Pink asterisk
+	.lp-asterisk{
+		color:$pink;
+	}
+
+	// 24px body (Figma "Larger Body")
+	.lp-body{
+		@include fontBodyLarge;
+
+		p{
+			margin:0px;
+
+			& + p{
+				margin-top:1.4em;
+			}
+		}
+
+		// 22px, 1.5 line height, 25px between paragraphs
+		&--small{
+			font-size:1.1rem;
+			line-height:1.5;
+
+			p + p{
+				margin-top:1.25rem;
+			}
+		}
+
+		&--relaxed{
+			line-height:1.5;
+		}
+
+		.btn{
+			margin:0px;
+		}
+	}
+
+	// Theme buttons use 0.8rem text: the design's are 16px with 10px/20px padding
+	.btn{
+		font-size:0.8rem;
+		line-height:1.1;
+		padding:0.5rem 1rem;
+	}
+}
+
+// The theme gives every ul li an en-dash marker: not wanted on the page's own lists
+.lp-faqlist > li,
+.lp-numlist > li,
+.lp-worklist > li,
+.lp-logos__track > li,
+.lp-jump__menu > li,
+.hb-hsform .inputs-list > li{
+	list-style:none;
+}
+
+// Phones: the theme keeps 1rem = 20px, so bring the body sizes down a step
+@include responsive_to($sm_screen){
+	.lp-inhousing{
+		.lp-body,
+		.lp-numlist p,
+		.lp-faqlist__panel p{
+			font-size:0.9rem;
+			line-height:1.45;
+		}
+		.lp-body--small{
+			font-size:0.85rem;
+		}
+		.lp-intro{
+			font-size:1.2rem;
+		}
+		.lp-about .lp-footnote{
+			font-size:0.8rem;
+		}
+	}
+}
+
+// Short closing line after a block of copy ("Your people. Our people. One team.")
+.lp-inhousing .lp-tagline{
+	margin-top:1.8rem;
+	font-weight:$fontweightMedium;
+	letter-spacing:-0.01em;
+}
+
+
+// The theme puts overflow-x:hidden on both html and body, which turns body into a scroll box and
+// stops position:sticky working anywhere on the page. Clip on body still stops sideways scrolling.
+html.js,
+html.no-js{
+	overflow-x:hidden;
+	overflow-y:auto;
+
+	body{
+		overflow:visible;
+		overflow-x:clip;
+	}
+}

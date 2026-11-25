@@ -1,0 +1,122 @@
+@use '../page' as *;
+
+// How we work: title left, intro right, then the three model cards in a row (outlined boxes)
+
+.lp-howwework{
+
+	&__intro{
+		@include lpTwoColumns;
+		row-gap:2rem;
+
+		.lp-title{
+			max-width:21.4rem; // 428px
+		}
+	}
+}
+
+.lp-models{
+	list-style:none;
+	display:grid;
+	grid-template-columns:minmax(0, 1fr);
+	gap:$verticalGutter;
+	margin:3rem 0px 0px;
+	padding:0px;
+
+	@include responsive_from($md_screen){
+		grid-template-columns:repeat(3, minmax(0, 1fr));
+		margin-top:4.5rem; // 90px
+	}
+}
+
+.lp-model{
+	display:flex;
+	flex-direction:column;
+	margin:0px;
+	padding:1.7rem 1.5rem 1.5rem; // 34px / 30px
+	border:0.05rem solid $bodyColor;
+
+	@include responsive_from($md_screen){
+		min-height:29.05rem; // 581px
+	}
+
+	// "MODEL" in mono above a big 01
+	&__num{
+		display:flex;
+		flex-direction:column;
+		gap:0.6rem;
+		margin:0px;
+		font-family:$fontfamilySansSerif;
+		font-size:3rem;
+		font-weight:$fontweightRegular;
+		line-height:1.1;
+		letter-spacing:-0.03em;
+
+		@include responsive_from($lg_screen){
+			font-size:4.5rem; // 90px
+		}
+
+		span{
+			@include fontSectionMarker;
+			letter-spacing:0.04em;
+		}
+	}
+
+	// Title sits 250px down from the top of the card on desktop
+	&__title{
+		margin:3rem 0px 0px;
+		font-family:$fontfamilySansSerif;
+		font-size:1.3rem;
+		font-weight:$fontweightMedium;
+		line-height:1.1;
+		letter-spacing:-0.03em;
+
+		@include responsive_from($md_screen){
+			margin-top:4.35rem; // 250px from the top of the card
+		}
+		@include responsive_from($lg_screen){
+			font-size:1.6rem; // 32px
+		}
+	}
+
+	.lp-body{
+		margin-top:1.5rem;
+
+		@include responsive_from($md_screen){
+			margin-top:2rem;
+		}
+	}
+
+}
+
+// Cards appear one, two, three: all three are triggered together (by the first card, see data-fade-with
+// in index.html), then each waits a little longer. !important beats the theme's transition shorthand.
+// filter is listed separately (no delay) for the hover dimming below.
+.lp-models .lp-model.animateFadeIn{
+	transition-property:opacity, transform, filter !important;
+	transition-duration:600ms, 600ms, 300ms !important;
+	transition-delay:0ms !important;
+
+	&:nth-child(2){ transition-delay:300ms, 300ms, 0ms !important; }
+	&:nth-child(3){ transition-delay:600ms, 600ms, 0ms !important; }
+}
+
+// Hover (mouse only): the card's number turns green and the other two fade back
+@media (hover:hover) and (pointer:fine){
+	.lp-model__num{
+		transition:color 300ms $transitionEaseInOut;
+
+		span{
+			color:$bodyColor; // "MODEL" stays as it is
+		}
+	}
+	.lp-models:hover .lp-model{
+		filter:opacity(0.35);
+	}
+	.lp-models .lp-model:hover{
+		filter:none;
+
+		.lp-model__num{
+			color:$green;
+		}
+	}
+}

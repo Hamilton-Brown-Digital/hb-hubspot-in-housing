@@ -1,0 +1,281 @@
+// Theme utilitis
+@use '../utility/utility' as *;
+@use '../utility/variables' as *;
+@use '../utility/dynamicvariables' as *;
+@use '../utility/mixins' as *;
+
+
+/* -- Animation
+--------------------------------- */
+html:not(.no-js){
+    body{
+        &:not(.jsNoAnimation){
+
+
+        // -- Generic Entrances ---------
+
+            // Titles (styles applied with JS)
+            .animatedTitle{
+                span{
+                    display:inline-block;
+                    position:relative;
+
+                    overflow-y:hidden;
+
+                    // Account for decenders on commas, and italic to the right
+                    margin-left:-0.4rem;
+                    margin-right:-0.4rem;
+                    margin-bottom:-0.8rem;
+                    padding-left:0.4rem;
+                    padding-right:0.4rem;
+                    padding-bottom:0.4rem;
+
+                    i{
+                        display:inline-block;
+                        vertical-align: baseline;
+                        position:relative;
+
+                        text-decoration:inherit;
+                        font-weight:inherit;
+                        font-style:inherit;
+                        line-height:inherit;
+
+                        // opacity:0;
+                        transform:translateY(calc(100% + 0.4rem));
+
+                        transition: opacity $transitionEaseInOut 750ms,
+                                    transform $transitionEaseOut 750ms;
+                    }
+
+                    em{
+                        display:inline-block;
+                        vertical-align: baseline;
+                        position:relative;
+
+                        line-height:inherit;
+
+                        margin-bottom:-0.4rem;
+                    }
+                }
+            }
+
+            // Sections (styles applied with JS)
+            .animateFadeIn{
+                opacity:0;
+                transform:translateY(2rem);
+                transition: opacity $transitionEaseInOut $transitionSpeed,
+                            transform $transitionEaseInOut $transitionSpeed;
+
+                &.jsFadeIn{
+                    opacity:1.0;
+                    transform:translateY(0px);
+                }
+
+                &--JustFade,
+                &--JustFade.jsFadeIn{
+                    transform:unset;
+                }
+            }
+
+
+        // -- General Template Entrances ---------
+
+            @keyframes cssFadeIn {
+                from {
+                    transform:translateY(2rem);
+                    opacity:0;
+                }
+                to {
+                    transform: translateY(0px);
+                    opacity:1.0;
+                }
+            }
+            @keyframes cssFadeInMoveUp {
+                from {
+                    transform:translateY(2rem);
+                    opacity:0;
+                }
+                to {
+                    transform: translateY(0px);
+                    opacity:1.0;
+                }
+            }
+
+
+            // Archive
+            &.archive{
+                // &:not(.post-type-archive-work){
+                    .archive_header{
+                        h1{
+                            opacity:0;
+                            transition: opacity $transitionEaseInOut 750ms;
+                        }
+                    }
+                    .featured,
+                    .intro,
+                    .tiles{
+                        opacity:0;
+                        transition: opacity $transitionEaseInOut 750ms;
+                    }
+                // }
+            }
+
+
+            // Single
+            &.single{
+                &:not(.work-template-default){
+                    .pagecontent{
+                        .content{
+                            &.article_header{
+
+                                .grid{
+
+                                    // Categories
+                                    .categories{
+                                        opacity:0;
+                                        transform:translateY(2rem);
+
+                                        animation: cssFadeInMoveUp 750ms normal forwards $transitionEaseOut;
+                                        animation-iteration-count: 1
+                                    }
+
+                                    // Title
+                                    .title{
+                                        opacity:0;
+                                        transform:translateY(2rem);
+
+                                        animation: cssFadeInMoveUp 750ms normal forwards $transitionEaseOut;
+                                        animation-delay:150ms;
+                                        animation-iteration-count: 1
+                                    }
+
+                                    // Reading Time
+                                    .reading_time_author{
+                                        opacity:0;
+                                        transform:translateY(2rem);
+
+                                        animation: cssFadeInMoveUp 750ms normal forwards $transitionEaseOut;
+                                        animation-delay:300ms;
+                                        animation-iteration-count: 1
+                                    }
+
+                                    // Image
+                                    .image,
+                                    .video{
+                                        opacity:0;
+                                        transform:translateY(2rem);
+
+                                        animation: cssFadeInMoveUp 750ms normal forwards $transitionEaseOut;
+                                        animation-delay:450ms;
+                                        animation-iteration-count: 1
+                                    }
+                                }
+                            }
+                            &.article_content{
+                                opacity:0;
+                                transform:translateY(2rem);
+
+                                animation: cssFadeIn 750ms normal forwards $transitionEaseOut;
+                                animation-delay:600ms;
+                                animation-iteration-count: 1
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            // Work Single
+            &.work-template-default{
+                .pagecontent{
+                    .content{
+                        &.project_header{
+                            .grid{
+
+                                // Client Name
+                                .client_name{
+                                    opacity:0;
+                                    transform:translateY(2rem);
+
+                                    animation: cssFadeInMoveUp 750ms normal forwards $transitionEaseOut;
+                                    animation-iteration-count: 1
+                                }
+
+                                // Title
+                                .title{
+                                    opacity:0;
+                                    transform:translateY(2rem);
+
+                                    animation: cssFadeInMoveUp 750ms normal forwards $transitionEaseOut;
+                                    animation-delay:150ms;
+                                    animation-iteration-count: 1
+                                }
+
+                                // Categories
+                                .categories{
+                                    opacity:0;
+                                    transform:translateY(2rem);
+
+                                    animation: cssFadeInMoveUp 750ms normal forwards $transitionEaseOut;
+                                    animation-delay:300ms;
+                                    animation-iteration-count: 1
+                                }
+
+                                // Image
+                                .image,
+                                .video{
+                                    opacity:0;
+                                    transform:translateY(2rem);
+
+                                    animation: cssFadeInMoveUp 750ms normal forwards $transitionEaseOut;
+                                    animation-delay:450ms;
+                                    animation-iteration-count: 1
+                                }
+                            }
+                        }
+                        &.article_content{
+                            opacity:0;
+                            transform:translateY(2rem);
+
+                            animation: cssFadeIn 750ms normal forwards $transitionEaseOut;
+                            animation-delay:450ms;
+                            animation-iteration-count: 1
+                        }
+                    }
+                }
+            }
+
+
+            // Pages
+            &.page-template-default{
+                .pagecontent{
+                    .content{
+                        &.general_content{
+                            .grid{
+
+                                // Title
+                                .title{
+                                    opacity:0;
+                                    transform:translateY(2rem);
+
+                                    animation: cssFadeInMoveUp 750ms normal forwards $transitionEaseOut;
+                                    animation-iteration-count: 1
+                                }
+
+                                // Text
+                                .text{
+                                    opacity:0;
+                                    transform:translateY(2rem);
+
+                                    animation: cssFadeInMoveUp 750ms normal forwards $transitionEaseOut;
+                                    animation-delay:300ms;
+                                    animation-iteration-count: 1
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

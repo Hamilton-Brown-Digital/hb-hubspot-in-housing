@@ -1,18 +1,34 @@
-// HB Creative – In-Housing landing page
-// Partials are prefixed with _ and pulled in here. Everything is scoped under .hb-lp
-// so it won't clash with HubSpot's own styles.
+/*!
+ * HB – Your team. Our agency. (HubSpot landing page)
+ * Built on the uk-hb.com theme (theme/ is a straight copy – update it from the theme, don't edit it here)
+ */
 
-@use 'abstracts/variables' as *;
-@use 'abstracts/mixins' as *;
+// Fonts
+@use 'fonts';
 
-@use 'base/reset';
-@use 'base/typography';
-@use 'layout/container';
+// Theme (copied from wp-content/themes/hb/assets/src/scss)
+@use 'theme/utility/dynamicvariables';
+@use 'theme/base/reset';
+@use 'theme/base/animations';
+@use 'theme/base/base';
+@use 'theme/base/components';
+@use 'theme/layout/structure';
+@use 'theme/layout/footer';
+@use 'theme/layout/content';
 
-@use 'components/buttons';
-@use 'components/form';
+// Page components
+@use 'components/type';
+@use 'components/pill';
+@use 'components/hubspot-form';
 
+// Page sections (in page order)
 @use 'sections/header';
 @use 'sections/hero';
-@use 'sections/section';
-@use 'sections/footer';
+@use 'sections/possibilities';
+@use 'sections/about';
+@use 'sections/sticklist';
+@use 'sections/split';
+@use 'sections/howwework';
+@use 'sections/ourwork';
+@use 'sections/testimonial';
+@use 'sections/contact';

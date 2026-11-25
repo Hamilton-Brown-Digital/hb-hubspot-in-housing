@@ -1,0 +1,169 @@
+@use '../page' as *;
+
+// Title top-left, copy in the right column, image bottom-left
+// (More possibilities copy, The HB difference, Our people and studios)
+
+.lp-split{
+	@include lpTwoColumns;
+	row-gap:2rem;
+
+	.lp-title{
+		@include responsive_from($sm_screen){
+			grid-column:1;
+			grid-row:1;
+			width:max-content;
+			max-width:52vw; // 935px at 1920: titles run a little past the column, as in the design
+		}
+	}
+
+	&__body{
+		max-width:32.8rem; // 656px
+
+		@include responsive_from($sm_screen){
+			grid-column:2;
+			grid-row:2;
+			margin-top:2.5rem;
+		}
+	}
+
+	&__image{
+		margin:0px;
+		overflow:hidden;
+
+		@include responsive_from($sm_screen){
+			grid-column:1;
+			grid-row:2;
+			align-self:start;
+			margin-top:2.5rem;   // Level with the top of the copy beside it
+			max-width:29rem;     // 580px
+		}
+
+		img{
+			display:block;
+			width:100%;
+			aspect-ratio:580/399;
+			object-fit:cover;
+		}
+	}
+}
+
+// The HB difference: title and copy on the right, two images (tall + square) on the left
+.lp-difference{
+	.lp-split{
+		@include responsive_from($sm_screen){
+			.lp-title{
+				grid-column:2;
+			}
+			.lp-split__body{
+				margin-top:1rem; // + the 2rem row gap = 60px under the title
+			}
+		}
+	}
+
+	&__images{
+		position:relative;
+
+		@include responsive_from($sm_screen){
+			grid-column:1;
+			grid-row:1 / span 2;
+		}
+	}
+
+	&__image{
+		margin:0px;
+		overflow:hidden;
+
+		img{
+			display:block;
+			width:100%;
+			height:100%;
+			object-fit:cover;
+		}
+
+		// 428 x 590, 158px below the top of the title
+		&--tall{
+			width:48.36%;
+			aspect-ratio:428/590;
+			margin-top:7.9rem;
+		}
+		// 276 square, 534px in, 85px below the top of the title
+		&--square{
+			position:absolute;
+			top:4.25rem;
+			left:60.34%;
+			width:31.19%;
+			aspect-ratio:1;
+		}
+
+		@include responsive_to($sm_screen){
+			&--tall{
+				width:55%;
+				margin-top:3rem;
+			}
+			&--square{
+				top:0px;
+				left:62%;
+				width:38%;
+			}
+		}
+	}
+}
+
+// CTA at the top of the dark zone: WHAT COULD YOUR TEAM / DO WITH M( [LET'S TALK] )RE?
+.lp-cta{
+	text-align:center;
+
+	&__title{
+		max-width:74.75rem; // 1495px
+		margin:0px auto;
+		font-family:$fontfamilySansSerif;
+		font-size:9vw;
+		font-weight:$fontweightMedium;
+		line-height:1.1;
+		letter-spacing:-0.03em;
+		text-transform:uppercase;
+
+		@include responsive_from($sm_screen){
+			font-size:5.52vw; // 106px at 1920
+		}
+		@include responsive_from($md_screen){
+			margin:5rem auto 2.5rem; // More room around it than a normal section (as in the design)
+		}
+
+		// The theme button, sitting in the brackets
+		.btn{
+			margin:0px;
+			letter-spacing:0px;
+		}
+	}
+
+	// The brackets open out to show the button: its box grows from nothing (centred text, so M( and )RE?
+	// move apart evenly) while the button is revealed from the middle
+	&__button{
+		display:inline-block;
+		vertical-align:middle;
+		translate:0px -0.06em;
+		max-width:calc(0.4em + 11rem);
+		padding:0px calc(0.2em + 1.9rem) 0px 0.2em; // Right side clears the arrow circle (drawn outside the button)
+		overflow:hidden;
+		white-space:nowrap;
+		line-height:1;
+	}
+}
+
+html.js .lp-cta{
+	.lp-cta__button{
+		max-width:0px;
+		padding-left:0px;
+		padding-right:0px;
+		clip-path:inset(0px 50% 0px 50%);
+		transition:max-width 1000ms $transitionEaseInOut, padding 1000ms $transitionEaseInOut, clip-path 1000ms $transitionEaseInOut;
+	}
+	// After the line has faded in (the section fade takes 250ms; then a pause)
+	&.jsFadeIn .lp-cta__button{
+		max-width:calc(0.4em + 11rem);
+		padding:0px calc(0.2em + 1.9rem) 0px 0.2em;
+		clip-path:inset(0px -3rem 0px -3rem);
+		transition-delay:700ms;
+	}
+}

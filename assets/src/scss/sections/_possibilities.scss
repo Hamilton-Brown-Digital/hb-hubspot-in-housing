@@ -1,0 +1,116 @@
+@use 'sass:list';
+@use '../page' as *;
+
+// More possibilities: scattered parallax images above and below the copy.
+// Image positions/sizes are vw taken from Figma at 1920 (image left / 1920, etc).
+
+.lp-possibilities{
+	// Safety net: nothing in this section can ever drift up over the green hero
+	clip-path:inset(0px -100vw -100vh -100vw);
+
+	&__images{
+		position:relative;
+		margin:0px calc(-1 * #{$sideSpacing}); // Full bleed: positions are from the page edge
+
+		&--top{
+			height:50.31vw; // 966px
+			// Pulled up to close the white gap under the hero. Checked at 390–2560px wide: even at the top of
+			// their parallax travel the images stay at least ~45px clear of the green.
+			margin-top:-5.5vw;
+		}
+		&--bottom{
+			height:62.92vw; // 1208px
+			margin-top:0.85rem;
+
+			// Desktop: the group is pulled up to fill the empty left column beside the copy (tops below)
+			@include responsive_from($md_screen){
+				height:47vw;
+			}
+		}
+
+		@include responsive_to($sm_screen){
+			&--top{ height:80vw; }
+			&--bottom{ height:95vw; }
+		}
+	}
+
+	&__text{
+		.lp-title{
+			@include responsive_from($sm_screen){
+				width:53.5vw; // 963px – runs slightly into the right column, as in the design
+			}
+		}
+	}
+
+	.lp-split__body{
+		@include responsive_from($sm_screen){
+			margin-top:4.5rem;
+		}
+	}
+}
+
+// Images (.pagecontent .lp-possibilities to beat the theme's .pagecontent .content .parallaximage)
+.pagecontent .lp-possibilities .lp-pimg{
+	img{
+		display:block;
+		width:100%;
+		height:auto;
+	}
+
+	// [left, top, width] in vw, z-index from the Figma layer order.
+	// Top group sits 7vw lower than Figma so it starts closer to the copy and stays clear of the hero.
+	$images:(
+		1:  (0vw,     15vw,    19.48vw, 3),  // IMG_1356
+		2:  (29.38vw, 27.99vw, 17.45vw, 2),  // IMG_2667
+		3:  (62.71vw, 10.8vw,  18.28vw, 4),  // IMG_2720
+		4:  (74.58vw, 20.49vw, 22.24vw, 1),  // IMG_3368
+		5:  (9.74vw,  0vw,     18.07vw, 4),  // IMG_1391
+		6:  (3.13vw,  20.31vw, 14.32vw, 2),  // IMG_1337
+		7:  (42.81vw, 14.17vw, 18.33vw, 3),  // IMG_3660
+		8:  (77.03vw, 17.19vw, 19.84vw, 5),  // IMG_3522
+		9:  (65.1vw,  40.26vw, 15.89vw, 6),  // IMG_0956
+		10: (22.97vw, 41.88vw, 26.25vw, 1),  // IMG_3494
+	);
+
+	// Desktop: bottom group moved up (top in vw, relative to the bottom block). 5 and 6 rise into the
+	// empty space left of the copy; the rest lift a little so the group stays together.
+	$desktop-tops:(
+		5:  -22vw,
+		6:  -1.7vw,
+		7:  14.17vw,
+		8:  12vw,
+		9:  30vw,
+		10: 21vw,
+	);
+
+	// Desktop: the laptop image (10) moves left into the space under the office image
+	&--10{
+		@include responsive_from($md_screen){
+			left:15vw !important;
+		}
+	}
+
+	@each $n, $top in $desktop-tops{
+		&--#{$n}{
+			@include responsive_from($md_screen){
+				top:$top !important;
+			}
+		}
+	}
+
+	@each $n, $pos in $images{
+		&--#{$n}{
+			left:list.nth($pos, 1);
+			top:list.nth($pos, 2);
+			width:list.nth($pos, 3);
+			z-index:list.nth($pos, 4);
+
+			// Mobile: same layout, images a bit bigger
+			@include responsive_to($sm_screen){
+				left:calc(#{list.nth($pos, 1)} * 0.85);
+				top:calc(#{list.nth($pos, 2)} * 1.5);
+				width:calc(#{list.nth($pos, 3)} * 1.35);
+			}
+		}
+	}
+}

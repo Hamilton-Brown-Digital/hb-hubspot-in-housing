@@ -1,0 +1,81 @@
+@use '../page' as *;
+
+// Testimonial (BDO): on black at the end of Our work. Quote with a hanging opening mark, video on the right.
+
+.lp-quote{
+
+	&__grid{
+		display:grid;
+		grid-template-columns:minmax(0, 1fr);
+		gap:2.5rem;
+
+		@include responsive_from($md_screen){
+			grid-template-columns:minmax(0, 1fr) 28%; // 504px of 1800
+			column-gap:$verticalGutter;
+			align-items:start;
+		}
+	}
+
+	&__text{
+		margin:0px;
+		padding:0px 0px 0px 1.45rem; // Room for the hanging quote mark (29px)
+		max-width:55.7rem;           // 1085px + the mark
+
+		p{
+			position:relative;
+			margin:0px;
+			font-size:1.6rem;
+			font-weight:$fontweightRegular;
+			line-height:1.1;
+			letter-spacing:-0.03em;
+
+			@include responsive_from($md_screen){
+				font-size:2rem;
+			}
+			@include responsive_from($lg_screen){
+				font-size:2.6rem; // 52px
+			}
+
+			&::before{
+				position:absolute;
+				top:0px;
+				right:100%;
+				padding-right:0.15em;
+				content:'\201C';
+			}
+			&::after{
+				content:'\201D';
+			}
+		}
+
+		footer{
+			margin-top:2.5rem;
+			font-size:1rem;
+			line-height:1.25;
+
+			@include responsive_from($lg_screen){
+				font-size:1.2rem; // 24px, 30px line height
+			}
+
+			strong{
+				display:block;
+				font-size:1.3rem;
+				font-weight:$fontweightMedium;
+				line-height:1.25;
+
+				@include responsive_from($lg_screen){
+					font-size:1.6rem; // 32px
+					line-height:0.94;
+				}
+			}
+		}
+	}
+
+	&__media{
+		margin:0px;
+
+		@include responsive_to($md_screen){
+			max-width:25.2rem;
+		}
+	}
+}
